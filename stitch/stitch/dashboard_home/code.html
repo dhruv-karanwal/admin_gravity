@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gravity Fitness - Admin Console</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fbf9f8;
+        }
+        h1, h2, h3, .headline-font {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+        }
+        .kinetic-gradient {
+            background: linear-gradient(135deg, #af000b 0%, #d81b1b 100%);
+        }
+        .ambient-glow {
+            box-shadow: 0px 12px 32px rgba(27, 28, 28, 0.06);
+        }
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "on-primary": "#ffffff",
+                "surface-container-lowest": "#ffffff",
+                "secondary-fixed": "#ffdad4",
+                "background": "#fbf9f8",
+                "on-tertiary": "#ffffff",
+                "tertiary-container": "#2e7d32",
+                "on-secondary": "#ffffff",
+                "secondary-container": "#ff5c47",
+                "primary-fixed": "#ffdad5",
+                "surface-dim": "#dbd9d9",
+                "secondary": "#b52619",
+                "on-background": "#1b1c1c",
+                "on-tertiary-container": "#cbffc2",
+                "tertiary": "#0d631b",
+                "surface-container-high": "#eae8e7",
+                "primary-fixed-dim": "#ffb4aa",
+                "surface-container-low": "#f5f3f3",
+                "on-secondary-fixed-variant": "#920703",
+                "secondary-fixed-dim": "#ffb4a8",
+                "on-surface-variant": "#5d3f3c",
+                "error-container": "#ffdad6",
+                "tertiary-fixed-dim": "#88d982",
+                "on-primary-container": "#ffedeb",
+                "surface-container-highest": "#e4e2e2",
+                "surface": "#fbf9f8",
+                "surface-bright": "#fbf9f8",
+                "on-secondary-container": "#610000",
+                "inverse-on-surface": "#f2f0f0",
+                "primary": "#af000b",
+                "on-tertiary-fixed-variant": "#005312",
+                "on-surface": "#1b1c1c",
+                "outline": "#926f6a",
+                "inverse-surface": "#303030",
+                "on-error-container": "#93000a",
+                "primary-container": "#d81b1b",
+                "outline-variant": "#e7bdb7",
+                "inverse-primary": "#ffb4aa",
+                "error": "#ba1a1a",
+                "on-error": "#ffffff",
+                "surface-container": "#efeded",
+                "surface-tint": "#c0000d",
+                "on-primary-fixed-variant": "#930007",
+                "surface-variant": "#e4e2e2",
+                "on-tertiary-fixed": "#002204",
+                "on-primary-fixed": "#410001",
+                "on-secondary-fixed": "#410000",
+                "tertiary-fixed": "#a3f69c"
+              },
+              fontFamily: {
+                "headline": ["Plus Jakarta Sans"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+              },
+              borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+            },
+          },
+        }
+      </script>
+</head>
+<body class="bg-surface text-on-surface antialiased overflow-x-hidden">
+<!-- SideNavBar Shell -->
+<aside class="fixed left-0 top-0 h-screen w-[240px] bg-red-950 flex flex-col py-6 shadow-2xl z-50">
+<div class="px-8 mb-10 flex items-center gap-3">
+<div class="text-white font-bold bg-red-600 rounded-full w-8 h-8 flex items-center justify-center">G</div>
+<div>
+<h1 class="text-white font-bold text-sm font-headline leading-tight">Gravity Fitness</h1>
+<p class="text-red-100/50 text-[10px] uppercase tracking-widest font-bold">Admin Console</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<!-- Active Navigation -->
+<a class="bg-[#fbf9f8] text-red-950 rounded-l-full ml-4 pl-4 py-3 font-bold flex items-center gap-3 group transition-transform scale-95 active:scale-90" href="#">
+<span class="material-symbols-outlined text-red-600" data-icon="dashboard">dashboard</span>
+<span class="font-['Plus_Jakarta_Sans'] text-sm">Overview</span>
+</a>
+<!-- Inactive Navigations -->
+<a class="text-red-100/70 hover:text-white px-8 py-3 flex items-center gap-3 hover:bg-red-900/50 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-['Plus_Jakarta_Sans'] font-semibold text-sm">Members</span>
+</a>
+<a class="text-red-100/70 hover:text-white px-8 py-3 flex items-center gap-3 hover:bg-red-900/50 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="fact_check">fact_check</span>
+<span class="font-['Plus_Jakarta_Sans'] font-semibold text-sm">Attendance</span>
+</a>
+<a class="text-red-100/70 hover:text-white px-8 py-3 flex items-center gap-3 hover:bg-red-900/50 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="badge">badge</span>
+<span class="font-['Plus_Jakarta_Sans'] font-semibold text-sm">Staff</span>
+</a>
+<a class="text-red-100/70 hover:text-white px-8 py-3 flex items-center gap-3 hover:bg-red-900/50 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-['Plus_Jakarta_Sans'] font-semibold text-sm">Finances</span>
+</a>
+<a class="text-red-100/70 hover:text-white px-8 py-3 flex items-center gap-3 hover:bg-red-900/50 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-['Plus_Jakarta_Sans'] font-semibold text-sm">Settings</span>
+</a>
+</nav>
+<div class="mt-auto border-t border-red-900/30 pt-6 space-y-1">
+<a class="text-red-100/70 hover:text-white px-8 py-3 flex items-center gap-3 hover:bg-red-900/50 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="font-['Plus_Jakarta_Sans'] font-semibold text-sm">Profile</span>
+</a>
+<a class="text-red-100/70 hover:text-white px-8 py-3 flex items-center gap-3 hover:bg-red-900/50 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-['Plus_Jakarta_Sans'] font-semibold text-sm">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-[240px] min-h-screen">
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 right-0 w-[calc(100%-240px)] h-16 bg-white/80 backdrop-blur-md flex justify-between items-center px-8 z-40">
+<div class="flex items-center gap-6 flex-1">
+<h2 class="text-xl font-bold text-on-surface font-headline">Dashboard</h2>
+<div class="relative w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm" data-icon="search">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-xl py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Search members, classes or payments..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors text-on-surface-variant opacity-80 hover:opacity-100">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors text-on-surface-variant opacity-80 hover:opacity-100">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant/30 mx-2"></div>
+<div class="flex items-center gap-3">
+<img alt="Admin User Avatar" class="w-8 h-8 rounded-full bg-surface-container-highest" data-alt="professional portrait of a fitness center administrator smiling in a modern gym environment with soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOEfoXu4rp9zlp80NQOI-j_kisETApOX1teY4QiIj5mvfRloSVyCfh1eUiGeeOTse803quolqLnG3wrNH4Kcjvo-vOpMqblZfgYnpocsCD27Em0Wy14IUvuRfYvR7Kc9DYX9F9cmRXAgGplhsm0fTklF01jwHcKLuIcOJ2NdSrDxwnbcrIsvPIeu9KLKpRr9IdDYLOxLLb_3FYfahEea9M52kJrsO263ifwq2vtHft4q7oAEEol04FFT0fYHflO14P3k_VG_Dqrxg"/>
+<span class="text-sm font-semibold font-headline">Admin</span>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<div class="pt-24 px-8 pb-12 max-w-[1600px] mx-auto space-y-8">
+<!-- Row 1: KPI Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- KPI 1: Active Members -->
+<div class="bg-surface-container-lowest p-6 rounded-xl ambient-glow">
+<div class="flex justify-between items-start mb-4">
+<span class="text-on-surface-variant text-xs font-bold uppercase tracking-wider font-label">Total Active Members</span>
+<span class="flex h-2 w-2 rounded-full bg-tertiary"></span>
+</div>
+<div class="flex items-end justify-between">
+<h3 class="text-3xl font-extrabold font-headline">1,248</h3>
+<div class="flex items-center text-tertiary text-xs font-bold">
+<span class="material-symbols-outlined text-sm mr-1" data-icon="trending_up">trending_up</span>
+                            +12%
+                        </div>
+</div>
+</div>
+<!-- KPI 2: Check-ins -->
+<div class="bg-surface-container-lowest p-6 rounded-xl ambient-glow">
+<div class="flex justify-between items-start mb-2">
+<span class="text-on-surface-variant text-xs font-bold uppercase tracking-wider font-label">Check-ins Today</span>
+<span class="material-symbols-outlined text-on-surface-variant text-sm" data-icon="person_check">person_check</span>
+</div>
+<div class="flex items-end gap-4">
+<h3 class="text-3xl font-extrabold font-headline">142</h3>
+<!-- Sparkline Placeholder -->
+<div class="flex-1 h-10 flex items-end gap-[2px] pb-1">
+<div class="bg-primary/20 w-full h-[40%] rounded-t-sm"></div>
+<div class="bg-primary/20 w-full h-[60%] rounded-t-sm"></div>
+<div class="bg-primary/20 w-full h-[30%] rounded-t-sm"></div>
+<div class="bg-primary/20 w-full h-[80%] rounded-t-sm"></div>
+<div class="bg-primary/20 w-full h-[50%] rounded-t-sm"></div>
+<div class="bg-primary/20 w-full h-[90%] rounded-t-sm"></div>
+<div class="kinetic-gradient w-full h-[100%] rounded-t-sm"></div>
+</div>
+</div>
+</div>
+<!-- KPI 3: Expiring Memberships -->
+<div class="bg-surface-container-lowest p-6 rounded-xl ambient-glow">
+<div class="flex justify-between items-start mb-4">
+<span class="text-on-surface-variant text-xs font-bold uppercase tracking-wider font-label">Expiring Soon</span>
+<div class="bg-secondary-fixed text-on-secondary-fixed-variant px-2 py-1 rounded-full text-[10px] font-bold">ACTION REQ.</div>
+</div>
+<div class="flex items-end justify-between">
+<h3 class="text-3xl font-extrabold font-headline">28</h3>
+<span class="text-on-surface-variant text-xs mb-1">Due this week</span>
+</div>
+</div>
+<!-- KPI 4: Revenue -->
+<div class="kinetic-gradient p-6 rounded-xl shadow-lg shadow-primary/20 text-white">
+<div class="flex justify-between items-start mb-4">
+<span class="text-white/70 text-xs font-bold uppercase tracking-wider font-label">Monthly Revenue</span>
+<span class="material-symbols-outlined text-white/50" data-icon="payments">payments</span>
+</div>
+<div class="flex items-end justify-between">
+<h3 class="text-3xl font-extrabold font-headline">₹4.2L</h3>
+<div class="flex items-center text-white text-xs font-bold bg-white/20 px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-sm mr-1" data-icon="arrow_upward">arrow_upward</span>
+                            8.4%
+                        </div>
+</div>
+</div>
+</div>
+<!-- Row 2: Activity & Status -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Today's Check-in Activity -->
+<div class="lg:col-span-2 bg-surface-container-lowest rounded-xl overflow-hidden ambient-glow">
+<div class="px-6 py-5 flex justify-between items-center">
+<h3 class="text-lg font-bold font-headline">Recent Activity</h3>
+<button class="text-primary text-xs font-bold hover:underline">View All</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low">
+<th class="px-6 py-3 text-[10px] uppercase tracking-wider font-bold text-on-surface-variant">Member</th>
+<th class="px-6 py-3 text-[10px] uppercase tracking-wider font-bold text-on-surface-variant">Time</th>
+<th class="px-6 py-3 text-[10px] uppercase tracking-wider font-bold text-on-surface-variant">Status</th>
+<th class="px-6 py-3 text-[10px] uppercase tracking-wider font-bold text-on-surface-variant">Access</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-low">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 flex items-center gap-3">
+<img alt="Member Avatar" class="w-8 h-8 rounded-full" data-alt="close up headshot of an athletic male member with a friendly smile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWIMvjeqdK7CHyaXZGDeqfiFQZAHpnI6EaDupuYHGXW9DRvIVVy30b0Q1QcdLXOUCcU3Vwst9Xva8vHtDSigkPakmp5DvgkMgrckXOzb4Uo-kEVEcwogKTJoQGd1n9wmR0UnWNEOXheUO-4InsysFFy63bAwFlj4wEFM0W6UnxAjPasSMMuHZyXAP7CNq0O3yN_W4wyxvpi7roxR0HOhfsW6qPXl_zOgIsaTu1JhkQoFGbiEgEYF67ymJIGCbFLYio8uZVdMEproQ"/>
+<div>
+<p class="text-sm font-bold">Rohan Sharma</p>
+<p class="text-[10px] text-on-surface-variant">Elite Tier</p>
+</div>
+</td>
+<td class="px-6 py-4 text-sm">08:45 AM</td>
+<td class="px-6 py-4">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed text-[10px] px-2 py-1 rounded-full font-bold">SUCCESS</span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant">
+<span class="material-symbols-outlined text-lg" data-icon="fingerprint">fingerprint</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 flex items-center gap-3">
+<img alt="Member Avatar" class="w-8 h-8 rounded-full" data-alt="close up headshot of a female member in sports gear ready for a workout" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDh74A2a42u5PUAvwHg_7z4SkKq5dNy_DVRGvpn9La98Io5Rt9GJvKQanpGlkYTGIvrUq_SP12hnqu2Cr8MRnhFwYkw2SRWMUeijXSc0X7VZeJKcID3-eE_4waLcMqiJ8KKhKipG8twPwZIBQFp5RboCq1ayDyq5RwyxK_oqxgsEvA8pGFlwh44DBNiXplUsahWHbEmJf5VzxH3WXg9MRqBhjb8N87h2WTm1vaawrGVJajKYLy0KEFR-gbDd-PqUiu4HgzwScgcKzM"/>
+<div>
+<p class="text-sm font-bold">Ananya Patel</p>
+<p class="text-[10px] text-on-surface-variant">Standard Tier</p>
+</div>
+</td>
+<td class="px-6 py-4 text-sm">08:32 AM</td>
+<td class="px-6 py-4">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed text-[10px] px-2 py-1 rounded-full font-bold">SUCCESS</span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant">
+<span class="material-symbols-outlined text-lg" data-icon="qr_code_2">qr_code_2</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 flex items-center gap-3">
+<img alt="Member Avatar" class="w-8 h-8 rounded-full" data-alt="portrait of a muscular man entering a high-end fitness center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGZCnHCu0b-pJBifhEJhrj_-WjkYAVGJtyy65o8SLclWKeL2FUKUFjptWisfTGeRL5UYuMCZ_bxYHpp4GiuX1FU7AsyKGnZ2wo4dEIYilMG24lg0ndOttQeZxIGJgXjBhVz6QsvMMBdyXsKvc7cR2vAMuvCXb9RsRbBlve3TccHrwCkwsLyABDc71mrlwZcoC424ybqU4M5yTRenmdrxWD3I0eNCk4RMx7YGparh6TfjCFoYPMfugQV3p_66A-RQBnj0ToLbKLsJc"/>
+<div>
+<p class="text-sm font-bold">Vikram Khanna</p>
+<p class="text-[10px] text-on-surface-variant">Pro Tier</p>
+</div>
+</td>
+<td class="px-6 py-4 text-sm">08:15 AM</td>
+<td class="px-6 py-4">
+<span class="bg-secondary-fixed text-on-secondary-fixed-variant text-[10px] px-2 py-1 rounded-full font-bold">DUE SOON</span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant">
+<span class="material-symbols-outlined text-lg" data-icon="contactless">contactless</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Membership Status Donut -->
+<div class="bg-surface-container-lowest p-6 rounded-xl ambient-glow flex flex-col items-center justify-center text-center">
+<h3 class="text-lg font-bold font-headline mb-8 self-start">Membership Status</h3>
+<div class="relative w-48 h-48 mb-8">
+<svg class="w-full h-full transform -rotate-90">
+<circle cx="96" cy="96" fill="transparent" r="80" stroke="#f5f3f3" stroke-width="20"></circle>
+<circle cx="96" cy="96" fill="transparent" r="80" stroke="#0d631b" stroke-dasharray="502" stroke-dashoffset="120" stroke-width="20"></circle>
+<circle cx="96" cy="96" fill="transparent" r="80" stroke="#b52619" stroke-dasharray="502" stroke-dashoffset="440" stroke-width="20"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-2xl font-black font-headline">88%</span>
+<span class="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest">Retention</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 w-full">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="text-xs font-semibold">742 Active</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="text-xs font-semibold">104 Expired</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Row 3: Bookings & PRs -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<!-- Class Bookings -->
+<div class="bg-surface-container-lowest rounded-xl p-6 ambient-glow">
+<h3 class="text-lg font-bold font-headline mb-6">Today's Sessions</h3>
+<div class="space-y-4">
+<div class="group">
+<div class="flex justify-between items-center mb-2">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container-low flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="fitness_center">fitness_center</span>
+</div>
+<div>
+<p class="text-sm font-bold">High Intensity Cardio</p>
+<p class="text-[10px] text-on-surface-variant">Trainer: Rahul M. • 10:00 AM</p>
+</div>
+</div>
+<span class="text-xs font-bold">18/20</span>
+</div>
+<div class="w-full bg-surface-container-low h-1.5 rounded-full overflow-hidden">
+<div class="kinetic-gradient h-full w-[90%]"></div>
+</div>
+</div>
+<div class="group">
+<div class="flex justify-between items-center mb-2">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container-low flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="self_improvement">self_improvement</span>
+</div>
+<div>
+<p class="text-sm font-bold">Advanced Yoga Flow</p>
+<p class="text-[10px] text-on-surface-variant">Trainer: Sarah K. • 11:30 AM</p>
+</div>
+</div>
+<span class="text-xs font-bold">12/15</span>
+</div>
+<div class="w-full bg-surface-container-low h-1.5 rounded-full overflow-hidden">
+<div class="kinetic-gradient h-full w-[80%]"></div>
+</div>
+</div>
+<div class="group">
+<div class="flex justify-between items-center mb-2">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container-low flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="exercise">exercise</span>
+</div>
+<div>
+<p class="text-sm font-bold">Strength Training</p>
+<p class="text-[10px] text-on-surface-variant">Trainer: Mike D. • 05:00 PM</p>
+</div>
+</div>
+<span class="text-xs font-bold">14/20</span>
+</div>
+<div class="w-full bg-surface-container-low h-1.5 rounded-full overflow-hidden">
+<div class="kinetic-gradient h-full w-[70%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent PRs -->
+<div class="bg-surface-container-lowest rounded-xl p-6 ambient-glow">
+<h3 class="text-lg font-bold font-headline mb-6">Recent PRs</h3>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="Member Avatar" class="w-10 h-10 rounded-full" data-alt="close up of a determined man in a gym setting with workout clothes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVhBwKNxWjpVlvNswyoRhsB6Cg-zD4ImnwnrZgUbWyFcL9u_VOxKSfSACrFbCDNgv4ZN3Omvd2v9o8e2mmngXHMuQJZFGAmdqhq9E-ZyBDN3v9fzYs0p6I8oSTdVPoIH_sxwZBL0HMnvWQ09bPPi9zPEL3vuGOnMVJBiFdMsG_fqeiuxM8oorHDAlA3P9NLgNQo1qoT1v4tPKJY7y-YoVxL9-XEfPqV7qa04XdUpzwciyHKMxsFYhOkFf5Vwtf6a6396F_hGTDYF8"/>
+<span class="absolute -top-1 -right-1 material-symbols-outlined text-amber-500 text-xs bg-white rounded-full p-[1px]" data-icon="stars" style="font-variation-settings: 'FILL' 1;">stars</span>
+</div>
+<div>
+<p class="text-sm font-bold">Arjun Mehta</p>
+<p class="text-[10px] text-on-surface-variant">Deadlift • 180kg</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-[10px] font-bold text-tertiary">NEW RECORD</p>
+<p class="text-[10px] text-on-surface-variant">2 mins ago</p>
+</div>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="Member Avatar" class="w-10 h-10 rounded-full" data-alt="professional photo of a woman celebrating a fitness achievement in a gym" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsLh8gaV3dLZXKt2WXOv6pZzkmFde1xrkN_CTtmWaVvY3D8joM4_ZKi56PC3aVxiILis9BLcmAldJPG8pbzLp3AF7oehHefbl4E5hjvftqvfEmQqojdQk5IXV7_UNccGjTNtyL_XV2O0i2yciRE_1-Rt2CqVVUi-CKKxEQhvnLBmEW9E1scXircsOfko2VA1KiWCSuZyoHVeKVUDEUVWl2PZf2oSD1LL_z17-6cr2Wh4i_jVfKGLIrUpaGiVS1oh1_39vvz_tSbZs"/>
+<span class="absolute -top-1 -right-1 material-symbols-outlined text-amber-500 text-xs bg-white rounded-full p-[1px]" data-icon="stars" style="font-variation-settings: 'FILL' 1;">stars</span>
+</div>
+<div>
+<p class="text-sm font-bold">Priya Luthra</p>
+<p class="text-[10px] text-on-surface-variant">Bench Press • 65kg</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-[10px] font-bold text-tertiary">NEW RECORD</p>
+<p class="text-[10px] text-on-surface-variant">15 mins ago</p>
+</div>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="Member Avatar" class="w-10 h-10 rounded-full" data-alt="headshot of a smiling young man in athletic wear" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAK5DgDYc1Bug3p31RdvK8FmgdjNzbBSMKIrx2O7VXvp7VMm_Kz6KIfNrkYTLWBPwvoaQWi2AtUtwRLxOtHTQ-OFPXKL7bR_98SC7vWagyUI4r96BcvLvffE5nCQc5xTbrvyj2jq79Pma2ppUHMnvK84XYEDgvdOsaRMnBdXlSZGBFt9OA4EMD3IDXbKmbwgarNZsH3VJHL5BaVyfLRMf4ybkUi021UaoIrRnbyOGCv2ZTaAUpvft-uLAYYMwBktG_AnpTpCZjQC5A"/>
+<span class="absolute -top-1 -right-1 material-symbols-outlined text-amber-500 text-xs bg-white rounded-full p-[1px]" data-icon="stars" style="font-variation-settings: 'FILL' 1;">stars</span>
+</div>
+<div>
+<p class="text-sm font-bold">Siddharth T.</p>
+<p class="text-[10px] text-on-surface-variant">Back Squat • 140kg</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-[10px] font-bold text-tertiary">NEW RECORD</p>
+<p class="text-[10px] text-on-surface-variant">42 mins ago</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Row 4: Monthly Revenue Chart -->
+<div class="bg-surface-container-lowest p-8 rounded-xl ambient-glow">
+<div class="flex justify-between items-center mb-10">
+<div>
+<h3 class="text-xl font-bold font-headline">Revenue Performance</h3>
+<p class="text-sm text-on-surface-variant">Fiscal Year 2024</p>
+</div>
+<div class="flex gap-2">
+<button class="bg-surface-container-low text-xs font-bold px-4 py-2 rounded-lg hover:bg-surface-container-high transition-all">Monthly</button>
+<button class="bg-primary text-white text-xs font-bold px-4 py-2 rounded-lg shadow-sm">Quarterly</button>
+</div>
+</div>
+<div class="h-64 flex items-end justify-between gap-4">
+<div class="flex flex-col items-center gap-2 flex-1 group">
+<div class="bg-surface-container-high w-full h-[40%] rounded-t-lg group-hover:bg-surface-container-highest transition-all"></div>
+<span class="text-[10px] font-bold text-on-surface-variant">JAN</span>
+</div>
+<div class="flex flex-col items-center gap-2 flex-1 group">
+<div class="bg-surface-container-high w-full h-[55%] rounded-t-lg group-hover:bg-surface-container-highest transition-all"></div>
+<span class="text-[10px] font-bold text-on-surface-variant">FEB</span>
+</div>
+<div class="flex flex-col items-center gap-2 flex-1 group">
+<div class="bg-surface-container-high w-full h-[45%] rounded-t-lg group-hover:bg-surface-container-highest transition-all"></div>
+<span class="text-[10px] font-bold text-on-surface-variant">MAR</span>
+</div>
+<div class="flex flex-col items-center gap-2 flex-1 group">
+<div class="bg-surface-container-high w-full h-[65%] rounded-t-lg group-hover:bg-surface-container-highest transition-all"></div>
+<span class="text-[10px] font-bold text-on-surface-variant">APR</span>
+</div>
+<div class="flex flex-col items-center gap-2 flex-1 group">
+<div class="bg-surface-container-high w-full h-[60%] rounded-t-lg group-hover:bg-surface-container-highest transition-all"></div>
+<span class="text-[10px] font-bold text-on-surface-variant">MAY</span>
+</div>
+<div class="flex flex-col items-center gap-2 flex-1 group">
+<div class="bg-surface-container-high w-full h-[75%] rounded-t-lg group-hover:bg-surface-container-highest transition-all"></div>
+<span class="text-[10px] font-bold text-on-surface-variant">JUN</span>
+</div>
+<div class="flex flex-col items-center gap-2 flex-1 group">
+<div class="bg-surface-container-high w-full h-[85%] rounded-t-lg group-hover:bg-surface-container-highest transition-all"></div>
+<span class="text-[10px] font-bold text-on-surface-variant">JUL</span>
+</div>
+<div class="flex flex-col items-center gap-2 flex-1 group">
+<div class="bg-surface-container-high w-full h-[70%] rounded-t-lg group-hover:bg-surface-container-highest transition-all"></div>
+<span class="text-[10px] font-bold text-on-surface-variant">AUG</span>
+</div>
+<div class="flex flex-col items-center gap-2 flex-1 group">
+<div class="bg-surface-container-high w-full h-[80%] rounded-t-lg group-hover:bg-surface-container-highest transition-all"></div>
+<span class="text-[10px] font-bold text-on-surface-variant">SEP</span>
+</div>
+<div class="flex flex-col items-center gap-2 flex-1 group">
+<div class="kinetic-gradient w-full h-[95%] rounded-t-lg shadow-lg shadow-primary/20"></div>
+<span class="text-[10px] font-black text-primary">OCT</span>
+</div>
+<div class="flex flex-col items-center gap-2 flex-1 group">
+<div class="bg-surface-container-high w-full h-[20%] rounded-t-lg group-hover:bg-surface-container-highest transition-all border-dashed border-2 border-outline-variant"></div>
+<span class="text-[10px] font-bold text-on-surface-variant">NOV</span>
+</div>
+<div class="flex flex-col items-center gap-2 flex-1 group">
+<div class="bg-surface-container-high w-full h-[20%] rounded-t-lg group-hover:bg-surface-container-highest transition-all border-dashed border-2 border-outline-variant"></div>
+<span class="text-[10px] font-bold text-on-surface-variant">DEC</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

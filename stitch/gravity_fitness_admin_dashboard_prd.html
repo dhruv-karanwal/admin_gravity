@@ -1,0 +1,78 @@
+# PROJECT IDENTITY
+Build a professional web-based Admin Dashboard for Gravity Fitness (formerly Regent Fitness Club - RFC), a real gym located in Bibwewadi, Pune, Maharashtra, India. This dashboard is the operational nerve centre for gym staff and management. It provides full visibility and control over the Gravity Fitness Member App (Flutter + Firebase). The dashboard must feel premium, data-rich, and built for daily professional use — not a prototype. Real people will use this every single day to run their business.
+
+# BRAND IDENTITY & VISUAL SYSTEM
+The Gravity Fitness brand is bold, energetic, and confidence-driven. The admin dashboard must reflect this.
+
+- **Primary Red:** #D81B1B — buttons, active states, key metrics, CTAs
+- **Deep Red:** #8B0000 — sidebar background, dark headers, hover accents
+- **Red Light:** #FDEAEA — alert backgrounds, warning highlights
+- **App Background:** #F5F9FF — main content area background
+- **Dark Text:** #1A1A1A — headings and primary labels
+- **Mid Text:** #4A4A4A — body text, table rows
+- **Muted Text:** #7A7A7A — captions, timestamps, placeholder labels
+- **Surface White:** #FFFFFF — cards, modals, panels
+- **Border:** #E0E0E0 — card outlines, table dividers, input borders
+- **Success Green:** #2E7D32 — active memberships, confirmed bookings, check-in dots
+- **Warning Amber:** #E65100 — expiring memberships, low class slots
+
+**Font Family:** Poppins (SemiBold for headings, Medium for labels, Regular for body)
+**Layout:** Fixed left sidebar (240px wide, deep red #8B0000 background) + top header bar + main content area with white cards on #F5F9FF background.
+
+# SIDEBAR NAVIGATION STRUCTURE
+RFC [Logo: white G on red circle] 
+Admin Panel
+
+─── OVERVIEW ───
+  Dashboard
+
+─── MEMBERS ───
+  All Members
+  Add Member
+  Expiring Soon
+  Inactive Members
+
+─── ATTENDANCE ───
+  Today's Check-ins
+  Attendance History
+  QR Scanner (web-based)
+
+─── WORKOUTS ───
+  Workout Logs
+  Personal Records
+
+─── CLASSES ───
+  Class Schedule
+  Bookings
+  Manage Trainers
+
+─── FINANCIALS ─── [Super Admin only]
+  Revenue Overview
+  Renewal Tracker
+  Payment History
+
+─── NOTIFICATIONS ───
+  Send Notification
+  Notification Logs
+
+─── REPORTS ─── [Super Admin only]
+  Monthly Reports
+  Export Data
+
+─── SETTINGS ─── [Super Admin only]
+  Gym Profile
+  Plan Configuration
+  Staff Accounts
+  Integrations
+
+# CORE PAGES TO DESIGN
+1. **Dashboard (Home Overview):** KPI cards, check-in activity, membership status chart, class bookings, recent PRs, revenue trend.
+2. **All Members:** Advanced table with filters, search, and a slide-in Detail Drawer.
+3. **Add Member:** 3-step form (Personal Info, Membership Plan, Review).
+4. **Expiring Soon:** Operational renewal management page with countdowns and WhatsApp reminders.
+5. **Today's Check-ins:** Live real-time feed and hourly distribution chart.
+6. **QR Scanner:** Web-camera based scanning interface with instant profile feedback.
+7. **Class Schedule:** Weekly grid timetable with detail panels.
+8. **Revenue Overview:** Financial KPIs and growth charts.
+9. **Send Notification:** FCM-based push notification composer with audience targeting and preview.
+10. **Settings:** Gym profile and plan configurations.

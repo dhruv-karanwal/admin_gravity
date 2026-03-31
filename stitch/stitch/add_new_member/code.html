@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Add Member | Gravity Fitness</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-primary": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "secondary-fixed": "#ffdad4",
+            "background": "#fbf9f8",
+            "on-tertiary": "#ffffff",
+            "tertiary-container": "#2e7d32",
+            "on-secondary": "#ffffff",
+            "secondary-container": "#ff5c47",
+            "primary-fixed": "#ffdad5",
+            "surface-dim": "#dbd9d9",
+            "secondary": "#b52619",
+            "on-background": "#1b1c1c",
+            "on-tertiary-container": "#cbffc2",
+            "tertiary": "#0d631b",
+            "surface-container-high": "#eae8e7",
+            "primary-fixed-dim": "#ffb4aa",
+            "surface-container-low": "#f5f3f3",
+            "on-secondary-fixed-variant": "#920703",
+            "secondary-fixed-dim": "#ffb4a8",
+            "on-surface-variant": "#5d3f3c",
+            "error-container": "#ffdad6",
+            "tertiary-fixed-dim": "#88d982",
+            "on-primary-container": "#ffedeb",
+            "surface-container-highest": "#e4e2e2",
+            "surface": "#fbf9f8",
+            "surface-bright": "#fbf9f8",
+            "on-secondary-container": "#610000",
+            "inverse-on-surface": "#f2f0f0",
+            "primary": "#af000b",
+            "on-tertiary-fixed-variant": "#005312",
+            "on-surface": "#1b1c1c",
+            "outline": "#926f6a",
+            "inverse-surface": "#303030",
+            "on-error-container": "#93000a",
+            "primary-container": "#d81b1b",
+            "outline-variant": "#e7bdb7",
+            "inverse-primary": "#ffb4aa",
+            "error": "#ba1a1a",
+            "on-error": "#ffffff",
+            "surface-container": "#efeded",
+            "surface-tint": "#c0000d",
+            "on-primary-fixed-variant": "#930007",
+            "surface-variant": "#e4e2e2",
+            "on-tertiary-fixed": "#002204",
+            "on-primary-fixed": "#410001",
+            "on-secondary-fixed": "#410000",
+            "tertiary-fixed": "#a3f69c"
+          },
+          fontFamily: {
+            "headline": ["Plus Jakarta Sans"],
+            "body": ["Inter"],
+            "label": ["Inter"]
+          },
+          borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(20px);
+    }
+    .active-notch {
+      clip-path: polygon(100% 0%, 100% 100%, 0% 100%, 0% 0%);
+    }
+  </style>
+</head>
+<body class="bg-surface font-body text-on-background">
+<!-- SideNavBar Anchor -->
+<aside class="fixed left-0 top-0 h-screen w-[240px] bg-red-950 flex flex-col py-6 shadow-2xl z-50">
+<div class="px-8 mb-10 flex items-center gap-3">
+<div class="text-white font-bold bg-red-600 rounded-full w-8 h-8 flex items-center justify-center">G</div>
+<div>
+<h1 class="text-white font-headline font-bold text-lg leading-tight">Gravity Fitness</h1>
+<p class="text-red-400 text-[10px] uppercase tracking-widest font-bold">Admin Console</p>
+</div>
+</div>
+<nav class="flex-1">
+<ul class="space-y-1">
+<li>
+<a class="text-red-100/70 hover:text-white px-8 py-3 flex items-center gap-3 hover:bg-red-900/50 transition-colors font-['Plus_Jakarta_Sans'] font-semibold text-sm" href="#">
+<span class="material-symbols-outlined">dashboard</span> Overview
+          </a>
+</li>
+<li>
+<a class="bg-[#fbf9f8] text-red-950 rounded-l-full ml-4 pl-4 py-3 font-bold flex items-center gap-3 font-['Plus_Jakarta_Sans'] text-sm" href="#">
+<span class="material-symbols-outlined">group</span> Members
+          </a>
+</li>
+<li>
+<a class="text-red-100/70 hover:text-white px-8 py-3 flex items-center gap-3 hover:bg-red-900/50 transition-colors font-['Plus_Jakarta_Sans'] font-semibold text-sm" href="#">
+<span class="material-symbols-outlined">fact_check</span> Attendance
+          </a>
+</li>
+<li>
+<a class="text-red-100/70 hover:text-white px-8 py-3 flex items-center gap-3 hover:bg-red-900/50 transition-colors font-['Plus_Jakarta_Sans'] font-semibold text-sm" href="#">
+<span class="material-symbols-outlined">badge</span> Staff
+          </a>
+</li>
+<li>
+<a class="text-red-100/70 hover:text-white px-8 py-3 flex items-center gap-3 hover:bg-red-900/50 transition-colors font-['Plus_Jakarta_Sans'] font-semibold text-sm" href="#">
+<span class="material-symbols-outlined">payments</span> Finances
+          </a>
+</li>
+<li>
+<a class="text-red-100/70 hover:text-white px-8 py-3 flex items-center gap-3 hover:bg-red-900/50 transition-colors font-['Plus_Jakarta_Sans'] font-semibold text-sm" href="#">
+<span class="material-symbols-outlined">settings</span> Settings
+          </a>
+</li>
+</ul>
+</nav>
+<div class="px-8 mt-auto pt-6 border-t border-red-900/30">
+<ul class="space-y-2">
+<li>
+<a class="text-red-100/70 hover:text-white flex items-center gap-3 font-['Plus_Jakarta_Sans'] font-semibold text-sm" href="#">
+<span class="material-symbols-outlined">account_circle</span> Profile
+          </a>
+</li>
+<li>
+<a class="text-red-100/70 hover:text-white flex items-center gap-3 font-['Plus_Jakarta_Sans'] font-semibold text-sm" href="#">
+<span class="material-symbols-outlined">logout</span> Logout
+          </a>
+</li>
+</ul>
+</div>
+</aside>
+<!-- TopNavBar Anchor -->
+<header class="fixed top-0 right-0 w-[calc(100%-240px)] h-16 bg-white/80 backdrop-blur-md flex justify-between items-center px-8 z-40">
+<div class="flex items-center gap-4">
+<h2 class="text-xl font-headline font-bold text-slate-900">Add New Member</h2>
+<div class="h-4 w-[1px] bg-outline-variant/30"></div>
+<div class="flex items-center bg-surface-container-low px-3 py-1.5 rounded-xl gap-2">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm font-label" placeholder="Search members..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="opacity-80 hover:opacity-100 hover:text-red-600 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="opacity-80 hover:opacity-100 hover:text-red-600 transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden">
+<img alt="Admin User Avatar" class="w-full h-full object-cover" data-alt="professional portrait of a high-end fitness center manager in smart casual attire with bright studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0UITA_3ALcmh0eWa4f-CWQGccIXP0Nnmzewjioy35QaN5WiU4duqyjoJRzMtBp9-sQvmNQGuqAbA-RyU4fpnudemJHuItUvN1xtxQQEbQgi2eYTvlqU0OtF4RPpjW69-e7EaoNtvBG5TeE7HNRpas7hOayaP8G-AtKdsoBerf9tz5EgIekwMgP9fRvuyiMreNhv-DEzqxVZJy1VpspKbNOkX0dzcWS2NirPvwTbeZzaRjREJ6uxVK-myhAC0bGeBnpXaFezUvO5M"/>
+</div>
+</div>
+</header>
+<main class="ml-[240px] pt-24 pb-16 px-10">
+<!-- Multi-Step Progress Indicator -->
+<div class="max-w-4xl mx-auto mb-12">
+<div class="relative flex justify-between">
+<div class="absolute top-1/2 left-0 w-full h-[2px] bg-surface-container-highest -translate-y-1/2 z-0"></div>
+<div class="absolute top-1/2 left-0 w-1/2 h-[2px] bg-primary -translate-y-1/2 z-0"></div>
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold shadow-lg shadow-primary/20">1</div>
+<span class="mt-2 font-headline font-semibold text-xs text-primary">Personal Info</span>
+</div>
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold shadow-lg shadow-primary/20">2</div>
+<span class="mt-2 font-headline font-semibold text-xs text-primary">Membership Plan</span>
+</div>
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center font-bold">3</div>
+<span class="mt-2 font-headline font-semibold text-xs text-on-surface-variant">Review</span>
+</div>
+</div>
+</div>
+<!-- Multi-Step Form Container -->
+<div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Step Content Area (Left/Main) -->
+<div class="lg:col-span-8 space-y-8">
+<!-- Section: Step 1 (Mocked as currently active) -->
+<div class="bg-surface-container-lowest rounded-xl p-8 shadow-sm">
+<div class="flex items-center gap-3 mb-8">
+<div class="bg-primary/10 text-primary w-8 h-8 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">person_add</span>
+</div>
+<h3 class="text-xl font-headline font-bold text-on-background">Member Information</h3>
+</div>
+<div class="space-y-6">
+<!-- Photo Upload Area -->
+<div class="flex items-center gap-6">
+<div class="relative w-24 h-24 rounded-2xl bg-surface-container-low flex items-center justify-center border-2 border-dashed border-outline-variant/30 overflow-hidden group">
+<img class="w-full h-full object-cover hidden group-active:block" data-alt="professional athletic portrait of a young man with focused expression in a gym setting with bokeh light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwzo4jS7vcq3HihcYXVC1K57gPXUF57D4iHw0yXblhwK10nPrcXU89zM0LC8cl2qnWCrytBsqoK1QHlqxdJx50mtVIP9GT5XOv4ac_X390SyL2Ba03K9hulRGot4mfNFgbVMNsZnh3To7-V6PxD-zt2BEUyuFOwc71D2CxV33A6_yseBdtQ8wfSrjnRyF-2aDSUWbgAw6__GMY6fz1UlWNW0Guv7BWXwwkBpXgKAq4UkpVPlDbDC5u67lhlvWEF2HZG3oeRIQ-jn4"/>
+<span class="material-symbols-outlined text-on-surface-variant text-2xl">add_a_photo</span>
+</div>
+<div class="flex-1">
+<p class="font-headline font-bold text-sm mb-1">Profile Photo</p>
+<p class="text-xs text-on-surface-variant mb-3">Upload a high-quality JPG or PNG. Max size 2MB.</p>
+<button class="bg-surface-container-high hover:bg-surface-container-highest px-4 py-2 rounded-lg text-xs font-bold transition-all">Upload File</button>
+</div>
+</div>
+<!-- Form Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-xs font-headline font-bold text-on-surface-variant uppercase tracking-wider">Full Name</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg p-3 text-sm focus:ring-2 focus:ring-primary/20" type="text" value="Arjun Malhotra"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-headline font-bold text-on-surface-variant uppercase tracking-wider">Phone Number</label>
+<div class="flex gap-2">
+<span class="bg-surface-container-high px-3 py-3 rounded-lg text-sm font-bold text-on-surface-variant">+91</span>
+<input class="flex-1 bg-surface-container-low border-none rounded-lg p-3 text-sm focus:ring-2 focus:ring-primary/20" placeholder="98765 43210" type="tel"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-headline font-bold text-on-surface-variant uppercase tracking-wider">Email Address</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg p-3 text-sm focus:ring-2 focus:ring-primary/20" placeholder="arjun.m@example.com" type="email"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-headline font-bold text-on-surface-variant uppercase tracking-wider">Date of Birth</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low border-none rounded-lg p-3 text-sm focus:ring-2 focus:ring-primary/20 appearance-none" type="date"/>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">calendar_today</span>
+</div>
+</div>
+</div>
+<!-- Fitness Goal Grid -->
+<div class="space-y-4">
+<label class="text-xs font-headline font-bold text-on-surface-variant uppercase tracking-wider">Primary Fitness Goal</label>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="border-2 border-primary bg-primary/5 p-4 rounded-xl flex flex-col items-center gap-2 cursor-pointer transition-all">
+<span class="material-symbols-outlined text-primary" data-weight="fill">fitness_center</span>
+<span class="text-[10px] font-bold text-primary uppercase">Weight Loss</span>
+</div>
+<div class="border-2 border-transparent bg-surface-container-low p-4 rounded-xl flex flex-col items-center gap-2 cursor-pointer hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-on-surface-variant">electric_bolt</span>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase">Muscle Gain</span>
+</div>
+<div class="border-2 border-transparent bg-surface-container-low p-4 rounded-xl flex flex-col items-center gap-2 cursor-pointer hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-on-surface-variant">monitor_heart</span>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase">Endurance</span>
+</div>
+<div class="border-2 border-transparent bg-surface-container-low p-4 rounded-xl flex flex-col items-center gap-2 cursor-pointer hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-on-surface-variant">spa</span>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase">Flexibility</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Section: Step 2 (Plan Selection) -->
+<div class="bg-surface-container-lowest rounded-xl p-8 shadow-sm">
+<div class="flex items-center justify-between mb-8">
+<div class="flex items-center gap-3">
+<div class="bg-tertiary/10 text-tertiary w-8 h-8 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">workspace_premium</span>
+</div>
+<h3 class="text-xl font-headline font-bold text-on-background">Membership Plan</h3>
+</div>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">Step 2 of 3</span>
+</div>
+<div class="space-y-8">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="border-2 border-primary bg-primary/5 p-5 rounded-2xl relative overflow-hidden group">
+<div class="absolute top-0 right-0 bg-primary text-white text-[8px] font-bold px-3 py-1 rounded-bl-lg">POPULAR</div>
+<h4 class="font-headline font-bold text-lg mb-1">Quarterly</h4>
+<div class="flex items-baseline gap-1 text-primary mb-4">
+<span class="text-xs font-bold">₹</span>
+<input class="w-20 bg-transparent border-none p-0 focus:ring-0 font-bold text-xl" type="text" value="12,500"/>
+</div>
+<ul class="text-[10px] space-y-2 text-on-surface-variant font-medium">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-[14px] text-tertiary">check_circle</span> Unlimited Gym Access</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-[14px] text-tertiary">check_circle</span> 2 Personal Trainer Sessions</li>
+</ul>
+</div>
+<div class="border-2 border-transparent bg-surface-container-low p-5 rounded-2xl hover:border-outline-variant transition-all cursor-pointer">
+<h4 class="font-headline font-bold text-lg mb-1">Monthly</h4>
+<div class="flex items-baseline gap-1 text-on-surface mb-4">
+<span class="text-xs font-bold">₹</span>
+<input class="w-20 bg-transparent border-none p-0 focus:ring-0 font-bold text-xl" type="text" value="4,500"/>
+</div>
+<ul class="text-[10px] space-y-2 text-on-surface-variant font-medium">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-[14px]">check_circle</span> General Access</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-[14px]">check_circle</span> Locker Facility</li>
+</ul>
+</div>
+<div class="border-2 border-transparent bg-surface-container-low p-5 rounded-2xl hover:border-outline-variant transition-all cursor-pointer">
+<h4 class="font-headline font-bold text-lg mb-1">Annual</h4>
+<div class="flex items-baseline gap-1 text-on-surface mb-4">
+<span class="text-xs font-bold">₹</span>
+<input class="w-20 bg-transparent border-none p-0 focus:ring-0 font-bold text-xl" type="text" value="42,000"/>
+</div>
+<ul class="text-[10px] space-y-2 text-on-surface-variant font-medium">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-[14px] text-tertiary">check_circle</span> All-In Exclusive</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-[14px] text-tertiary">check_circle</span> Diet Consultation</li>
+</ul>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="space-y-2">
+<label class="text-xs font-headline font-bold text-on-surface-variant uppercase tracking-wider">Start Date</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg p-3 text-sm focus:ring-2 focus:ring-primary/20" type="date" value="2023-10-25"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-headline font-bold text-on-surface-variant uppercase tracking-wider">Expiry Date</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg p-3 text-sm focus:ring-2 focus:ring-primary/20" type="date" value="2024-01-25"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-headline font-bold text-on-surface-variant uppercase tracking-wider">Assigned Trainer</label>
+<select class="w-full bg-surface-container-low border-none rounded-lg p-3 text-sm focus:ring-2 focus:ring-primary/20">
+<option>Vikram Singh (Senior)</option>
+<option>Priya Sharma</option>
+<option>Rohan Das</option>
+<option>None (General Access)</option>
+</select>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Step 3 Review Sidebar -->
+<div class="lg:col-span-4 sticky top-24">
+<div class="bg-surface-container-lowest rounded-xl shadow-lg overflow-hidden flex flex-col">
+<div class="p-6 bg-primary text-white">
+<p class="text-[10px] font-bold uppercase tracking-widest opacity-80 mb-1">New Member Preview</p>
+<h3 class="text-2xl font-headline font-bold">RFC-2026-0001</h3>
+</div>
+<div class="p-6 space-y-6">
+<!-- User Summary -->
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 rounded-xl bg-surface-container-low overflow-hidden border-2 border-surface">
+<img class="w-full h-full object-cover" data-alt="close-up profile photo of male fitness athlete in natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqpEP2Nr4ohP9nVpzAExMlNfSUqa21WPBz5S98iQGZ6HvlBI4wwqdzbrDqm_jG7qM_UdblC2X6mphLPdzk3z5F5CCIRBi_Je7DhvxQ1gIVDQVlLDDnhcnA0NoQ790fvBQ5AGjiYUS36U3Ar7zinC9ubTv94uj0rPU_YOP6mgr4RTlkZHda0WACsKCWzTbs3OCiG0vxuDW23ZkY8pl90eZLYE7vIbSoUEVt1gdfc4QE_xLlMCAnU-81nYP3tZ0zPY9ZVZPcNHEX6GA"/>
+</div>
+<div>
+<p class="font-headline font-bold text-lg text-on-background">Arjun Malhotra</p>
+<p class="text-xs text-on-surface-variant font-medium">Joined Oct 2023</p>
+</div>
+</div>
+<!-- Detail List -->
+<div class="space-y-4">
+<div class="flex justify-between items-center text-xs">
+<span class="font-bold text-on-surface-variant">PLAN</span>
+<span class="font-headline font-bold text-primary">Quarterly Premium</span>
+</div>
+<div class="flex justify-between items-center text-xs">
+<span class="font-bold text-on-surface-variant">TRAINER</span>
+<span class="font-bold text-on-surface">Vikram Singh</span>
+</div>
+<div class="flex justify-between items-center text-xs">
+<span class="font-bold text-on-surface-variant">VALID TILL</span>
+<span class="font-bold text-on-surface">25 Jan 2024</span>
+</div>
+<div class="pt-4 border-t border-surface-container-low">
+<div class="flex justify-between items-center">
+<span class="font-headline font-bold text-sm text-on-background">Total Amount</span>
+<span class="text-xl font-headline font-extrabold text-primary">₹12,500</span>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="space-y-3">
+<button class="w-full bg-gradient-to-br from-primary to-primary-container text-white font-headline font-bold py-4 rounded-xl shadow-lg shadow-primary/30 transition-transform active:scale-95 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">how_to_reg</span>
+                Confirm and Create Member
+              </button>
+<button class="w-full py-3 text-xs font-bold text-on-surface-variant hover:text-primary transition-colors">
+                Save as Draft
+              </button>
+</div>
+</div>
+</div>
+<!-- Help Card -->
+<div class="mt-6 bg-surface-container-low p-6 rounded-xl border-2 border-transparent border-dashed border-outline-variant/30">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary">info</span>
+<div>
+<p class="text-xs font-bold text-on-surface mb-1">Need Help?</p>
+<p class="text-[10px] text-on-surface-variant leading-relaxed">Ensure all identification documents are verified before final confirmation. Member ID is generated automatically.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Mobile Bottom Nav Suppression (Transactional Page) -->
+<!-- Note: BottomNavBar is suppressed as per the "Destination Rule" for Transactional flows -->
+</body></html>

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Expiring Memberships | Gravity Fitness Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-primary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "secondary-fixed": "#ffdad4",
+              "background": "#fbf9f8",
+              "on-tertiary": "#ffffff",
+              "tertiary-container": "#2e7d32",
+              "on-secondary": "#ffffff",
+              "secondary-container": "#ff5c47",
+              "primary-fixed": "#ffdad5",
+              "surface-dim": "#dbd9d9",
+              "secondary": "#b52619",
+              "on-background": "#1b1c1c",
+              "on-tertiary-container": "#cbffc2",
+              "tertiary": "#0d631b",
+              "surface-container-high": "#eae8e7",
+              "primary-fixed-dim": "#ffb4aa",
+              "surface-container-low": "#f5f3f3",
+              "on-secondary-fixed-variant": "#920703",
+              "secondary-fixed-dim": "#ffb4a8",
+              "on-surface-variant": "#5d3f3c",
+              "error-container": "#ffdad6",
+              "tertiary-fixed-dim": "#88d982",
+              "on-primary-container": "#ffedeb",
+              "surface-container-highest": "#e4e2e2",
+              "surface": "#fbf9f8",
+              "surface-bright": "#fbf9f8",
+              "on-secondary-container": "#610000",
+              "inverse-on-surface": "#f2f0f0",
+              "primary": "#af000b",
+              "on-tertiary-fixed-variant": "#005312",
+              "on-surface": "#1b1c1c",
+              "outline": "#926f6a",
+              "inverse-surface": "#303030",
+              "on-error-container": "#93000a",
+              "primary-container": "#d81b1b",
+              "outline-variant": "#e7bdb7",
+              "inverse-primary": "#ffb4aa",
+              "error": "#ba1a1a",
+              "on-error": "#ffffff",
+              "surface-container": "#efeded",
+              "surface-tint": "#c0000d",
+              "on-primary-fixed-variant": "#930007",
+              "surface-variant": "#e4e2e2",
+              "on-tertiary-fixed": "#002204",
+              "on-primary-fixed": "#410001",
+              "on-secondary-fixed": "#410000",
+              "tertiary-fixed": "#a3f69c"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface selection:bg-primary/20">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-screen w-[240px] bg-red-950 dark:bg-red-950 shadow-2xl flex flex-col h-full py-6 z-50">
+<div class="px-8 mb-10 flex items-center gap-3">
+<div class="text-white font-bold bg-red-600 rounded-full w-8 h-8 flex items-center justify-center">
+<span class="material-symbols-outlined text-sm" data-icon="fitness_center">fitness_center</span>
+</div>
+<div>
+<h1 class="text-white font-headline font-extrabold tracking-tight text-lg leading-none">Gravity Fitness</h1>
+<p class="text-red-400 text-[10px] uppercase tracking-widest mt-1">Admin Console</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="text-red-100/70 hover:text-white px-8 py-3 flex items-center gap-3 font-['Plus_Jakarta_Sans'] font-semibold text-sm hover:bg-red-900/50 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                Overview
+            </a>
+<a class="bg-[#fbf9f8] text-red-950 rounded-l-full ml-4 pl-4 py-3 font-bold flex items-center gap-3 font-['Plus_Jakarta_Sans'] text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+                Members
+            </a>
+<a class="text-red-100/70 hover:text-white px-8 py-3 flex items-center gap-3 font-['Plus_Jakarta_Sans'] font-semibold text-sm hover:bg-red-900/50 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="fact_check">fact_check</span>
+                Attendance
+            </a>
+<a class="text-red-100/70 hover:text-white px-8 py-3 flex items-center gap-3 font-['Plus_Jakarta_Sans'] font-semibold text-sm hover:bg-red-900/50 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="badge">badge</span>
+                Staff
+            </a>
+<a class="text-red-100/70 hover:text-white px-8 py-3 flex items-center gap-3 font-['Plus_Jakarta_Sans'] font-semibold text-sm hover:bg-red-900/50 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+                Finances
+            </a>
+<a class="text-red-100/70 hover:text-white px-8 py-3 flex items-center gap-3 font-['Plus_Jakarta_Sans'] font-semibold text-sm hover:bg-red-900/50 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                Settings
+            </a>
+</nav>
+<div class="mt-auto px-8 space-y-4">
+<a class="flex items-center gap-3 text-red-100/70 hover:text-white font-['Plus_Jakarta_Sans'] font-semibold text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+                Profile
+            </a>
+<a class="flex items-center gap-3 text-red-100/70 hover:text-white font-['Plus_Jakarta_Sans'] font-semibold text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                Logout
+            </a>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 w-[calc(100%-240px)] h-16 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md flex justify-between items-center px-8 z-40">
+<div class="flex items-center gap-6 flex-1">
+<h2 class="text-xl font-headline font-bold text-slate-900 dark:text-white">Expiring Memberships</h2>
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg" data-icon="search">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-xl text-sm focus:ring-2 focus:ring-primary/20" placeholder="Search by name or phone..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors relative">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="help">help</span>
+</button>
+<img class="w-8 h-8 rounded-full border border-outline-variant" data-alt="Close-up portrait of a professional male gym manager with a confident and friendly expression in an office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3nmmDX8_dVWpa-uYtptZZj_cFK45S5D7zr7UO2OrjKmrRaOaSKdkMYBT0vb4bTWZcxfLE09Yqhl8E_lgtBF-8KE7ka9gsA1YjK5KAxHz7azr-oAVo3z-cZY_YRgzHm3UgQZEAkLtTsyEUEgvASnu2sWVnPlUlBxh_XT-yT3cyJLokrFmh70i3hYYshLrW4Zl_GD2qaPlxGQcOklexL8dIOvyqXXkJ0GGVBkzdh21akq5yjhgTNVq56CDBPMDzXplYIr-j64RQEps"/>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-[240px] pt-16 min-h-screen">
+<div class="p-8">
+<!-- Alert Banner -->
+<div class="mb-8 bg-gradient-to-r from-primary to-secondary rounded-xl p-4 flex items-center justify-between shadow-lg">
+<div class="flex items-center gap-4">
+<div class="bg-white/20 p-2 rounded-lg">
+<span class="material-symbols-outlined text-white" data-icon="warning">warning</span>
+</div>
+<div>
+<h4 class="text-white font-semibold">24 memberships expire within 7 days.</h4>
+<p class="text-white/80 text-sm">Immediate attention required to maintain retention rates.</p>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 bg-white text-primary font-bold text-sm rounded-lg hover:bg-red-50 transition-colors">Send All Reminders</button>
+<button class="px-4 py-2 bg-primary-container text-white border border-white/20 font-bold text-sm rounded-lg hover:bg-red-700 transition-colors">Renew Now</button>
+</div>
+</div>
+<!-- Filters & Bulk Actions -->
+<div class="flex flex-col md:flex-row justify-between items-end md:items-center gap-4 mb-6">
+<div class="flex bg-surface-container-low p-1 rounded-xl overflow-x-auto no-scrollbar">
+<button class="px-5 py-2 whitespace-nowrap text-sm font-semibold text-primary bg-white shadow-sm rounded-lg">Expiring Today (4)</button>
+<button class="px-5 py-2 whitespace-nowrap text-sm font-medium text-on-surface-variant hover:text-on-surface transition-colors">Expiring in 3 Days (8)</button>
+<button class="px-5 py-2 whitespace-nowrap text-sm font-medium text-on-surface-variant hover:text-on-surface transition-colors">Expiring in 7 Days (12)</button>
+<button class="px-5 py-2 whitespace-nowrap text-sm font-medium text-on-surface-variant hover:text-on-surface transition-colors">Already Expired (31)</button>
+</div>
+<div class="bg-white px-4 py-2 rounded-xl shadow-sm border-l-4 border-primary flex items-center gap-4">
+<p class="text-xs font-label font-medium text-on-surface-variant uppercase tracking-wider">Bulk Actions</p>
+<button class="flex items-center gap-2 px-3 py-1.5 bg-primary/10 text-primary hover:bg-primary hover:text-white rounded-lg text-sm font-bold transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="campaign">campaign</span>
+                        Send Bulk FCM Notification
+                    </button>
+</div>
+</div>
+<!-- Table Section -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low">
+<th class="px-6 py-4 text-xs font-label font-semibold text-on-surface-variant uppercase tracking-widest">
+<input class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+</th>
+<th class="px-6 py-4 text-xs font-label font-semibold text-on-surface-variant uppercase tracking-widest">Member</th>
+<th class="px-6 py-4 text-xs font-label font-semibold text-on-surface-variant uppercase tracking-widest">Phone</th>
+<th class="px-6 py-4 text-xs font-label font-semibold text-on-surface-variant uppercase tracking-widest">Plan</th>
+<th class="px-6 py-4 text-xs font-label font-semibold text-on-surface-variant uppercase tracking-widest text-center">Expiry Date</th>
+<th class="px-6 py-4 text-xs font-label font-semibold text-on-surface-variant uppercase tracking-widest text-center">Status</th>
+<th class="px-6 py-4 text-xs font-label font-semibold text-on-surface-variant uppercase tracking-widest text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-6 py-4">
+<input class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Athletic young man with short hair wearing a black fitness tank top in a modern gym environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJr_l4brXC7A9IB0V8RGyww1prRrV2D0ZIap3hwuUh9rSaA3bqdweu6Mr3ct3xH5MeKzGAFnWm_X9Otfjok9Q3haMO-FwNFJCNQ_-BD7pTI0DA1a1BP8H11HZnHc5XHkgD2F3UTBIAI30NMjMQgO-x0IiiLyEFF_kHjWJdTzXAFfFljvae-p4hVl8P0OAxSdeJZ1AX1T2CYOsSwiOhKzfixQyfiy1T9PhujhYJt7c-mThHP99Y_fXG78xrxH-g9wmqPZbLy9QmE7Y"/>
+<div>
+<p class="font-headline font-bold text-sm text-on-surface">Arjun Sharma</p>
+<p class="text-xs text-on-surface-variant">ID: GF-2091</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm font-medium">+91 98765 43210</td>
+<td class="px-6 py-4">
+<span class="text-xs font-bold px-2.5 py-1 bg-surface-container rounded-lg text-on-surface">Premium Annual</span>
+</td>
+<td class="px-6 py-4 text-center text-sm font-medium">Oct 24, 2023</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-error-container text-on-error-container text-[10px] font-extrabold uppercase tracking-tight">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                                    Expires Today
+                                </span>
+</td>
+<td class="px-6 py-4">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-tertiary hover:bg-tertiary-fixed-dim/20 rounded-lg" title="WhatsApp Reminder">
+<span class="material-symbols-outlined text-xl" data-icon="chat">chat</span>
+</button>
+<button class="p-2 text-primary hover:bg-primary-fixed/20 rounded-lg" title="Call Member">
+<span class="material-symbols-outlined text-xl" data-icon="call">call</span>
+</button>
+<button class="px-3 py-1.5 bg-primary text-white text-xs font-bold rounded-lg hover:scale-105 transition-transform">Renew Now</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-6 py-4">
+<input class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Strong woman in high-performance athletic wear smiling during a break at a fitness center with natural window lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvtNhj4nKpbLCZ3ZYYC96CgmAkQt3cNAMTPtz3uSn6G86IMlB2ik0kQK8ZvIiv4Q_zT9VXscEec1umslhFCQ9PcBUICEIueVQw-_rBcvSRkQUjxnd1jatoFYp_CA_kb0A1UpT5bXslwiD2Cg9dCe9QMFR802MTcu6V4I_RjMK-EcdEhu_LTAXCBqdPKFbX-Ho6sqQig5JfJax1x8oYwwBFJOoY0Amwcmo8Zj9rXueSyw-9FgHy2yEFGkaM5iUGTt-QwztM_b-hpiQ"/>
+<div>
+<p class="font-headline font-bold text-sm text-on-surface">Priya Verma</p>
+<p class="text-xs text-on-surface-variant">ID: GF-3122</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm font-medium">+91 91234 56789</td>
+<td class="px-6 py-4">
+<span class="text-xs font-bold px-2.5 py-1 bg-surface-container rounded-lg text-on-surface">3-Month Strength</span>
+</td>
+<td class="px-6 py-4 text-center text-sm font-medium">Oct 27, 2023</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-100 text-orange-700 text-[10px] font-extrabold uppercase tracking-tight">
+<span class="w-1.5 h-1.5 rounded-full bg-orange-500"></span>
+                                    3 Days Left
+                                </span>
+</td>
+<td class="px-6 py-4">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-tertiary hover:bg-tertiary-fixed-dim/20 rounded-lg" title="WhatsApp Reminder">
+<span class="material-symbols-outlined text-xl" data-icon="chat">chat</span>
+</button>
+<button class="p-2 text-primary hover:bg-primary-fixed/20 rounded-lg" title="Call Member">
+<span class="material-symbols-outlined text-xl" data-icon="call">call</span>
+</button>
+<button class="px-3 py-1.5 bg-primary text-white text-xs font-bold rounded-lg hover:scale-105 transition-transform">Renew Now</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-6 py-4">
+<input class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Muscular middle-aged man with athletic build posing in a professional gym environment with warm ambient lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWWrKJhohmp9ys09jXTaL-jv3_HMi47L4XdtbGKV1nEcqo0mm2rMasyOtKqQ-aRrPtsy2RRt4Vfguz-SBYGCk5z3rBTggYCskEbKepHhUHwgp9Nc9hCW2uWkNA8XqWwhfJzRv-VuhBJMT3bIPUlftWaB0M8fgAt8RItak8k0a1Cwt2XRYmcBKUur66b6T46I8bvQopSfGQLh4rcmFlNOAbth4YJ518WeneDCeBQCY5NBn8koz6f8GNw0P6_J-e1VqleAd7OZiP7JY"/>
+<div>
+<p class="font-headline font-bold text-sm text-on-surface">Sanjay Kapoor</p>
+<p class="text-xs text-on-surface-variant">ID: GF-1044</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm font-medium">+91 88888 77777</td>
+<td class="px-6 py-4">
+<span class="text-xs font-bold px-2.5 py-1 bg-surface-container rounded-lg text-on-surface">Weekend Warrior</span>
+</td>
+<td class="px-6 py-4 text-center text-sm font-medium">Oct 30, 2023</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-yellow-100 text-yellow-800 text-[10px] font-extrabold uppercase tracking-tight">
+<span class="w-1.5 h-1.5 rounded-full bg-yellow-500"></span>
+                                    6 Days Left
+                                </span>
+</td>
+<td class="px-6 py-4">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-tertiary hover:bg-tertiary-fixed-dim/20 rounded-lg" title="WhatsApp Reminder">
+<span class="material-symbols-outlined text-xl" data-icon="chat">chat</span>
+</button>
+<button class="p-2 text-primary hover:bg-primary-fixed/20 rounded-lg" title="Call Member">
+<span class="material-symbols-outlined text-xl" data-icon="call">call</span>
+</button>
+<button class="px-3 py-1.5 bg-primary text-white text-xs font-bold rounded-lg hover:scale-105 transition-transform">Renew Now</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="px-6 py-4 bg-surface-container-low flex justify-between items-center">
+<p class="text-xs text-on-surface-variant">Showing 3 of 24 expiring memberships</p>
+<div class="flex gap-2">
+<button class="w-8 h-8 flex items-center justify-center rounded bg-white shadow-sm border border-outline-variant disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded bg-primary text-white shadow-sm">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded bg-white shadow-sm border border-outline-variant">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded bg-white shadow-sm border border-outline-variant">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Renewal Modal (Overlaid/Simulated) -->
+<div class="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm">
+<div class="bg-surface-container-lowest w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
+<div class="bg-gradient-to-r from-red-950 to-primary p-6 flex justify-between items-center">
+<div>
+<h3 class="text-white font-headline font-bold text-xl">Membership Renewal</h3>
+<p class="text-white/70 text-sm">Renewing Arjun Sharma (GF-2091)</p>
+</div>
+<button class="text-white/50 hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<div class="p-8 space-y-6">
+<!-- Plan Selector -->
+<div>
+<label class="block text-xs font-label font-bold text-on-surface-variant uppercase tracking-wider mb-2">Select Plan</label>
+<select class="w-full bg-surface-container-low border-none rounded-xl py-3 px-4 text-sm font-semibold focus:ring-2 focus:ring-primary/20">
+<option>Premium Annual — ₹18,000</option>
+<option>6-Month Transformation — ₹10,500</option>
+<option>3-Month Strength — ₹6,000</option>
+<option>Monthly Elite — ₹2,500</option>
+</select>
+</div>
+<!-- Dates -->
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-xs font-label font-bold text-on-surface-variant uppercase tracking-wider mb-2">Start Date</label>
+<input class="w-full bg-surface-container-low border-none rounded-xl py-3 px-4 text-sm font-semibold focus:ring-2 focus:ring-primary/20" type="date" value="2023-10-25"/>
+</div>
+<div>
+<label class="block text-xs font-label font-bold text-on-surface-variant uppercase tracking-wider mb-2">Expiry Date</label>
+<input class="w-full bg-surface-container-low border-none rounded-xl py-3 px-4 text-sm font-semibold focus:ring-2 focus:ring-primary/20" type="date" value="2024-10-24"/>
+</div>
+</div>
+<!-- Payment Details -->
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-xs font-label font-bold text-on-surface-variant uppercase tracking-wider mb-2">Payment Amount (₹)</label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 font-bold text-on-surface-variant">₹</span>
+<input class="w-full pl-8 bg-surface-container-low border-none rounded-xl py-3 px-4 text-sm font-bold focus:ring-2 focus:ring-primary/20" type="number" value="18000"/>
+</div>
+</div>
+<div>
+<label class="block text-xs font-label font-bold text-on-surface-variant uppercase tracking-wider mb-2">Method</label>
+<select class="w-full bg-surface-container-low border-none rounded-xl py-3 px-4 text-sm font-semibold focus:ring-2 focus:ring-primary/20">
+<option>Cash</option>
+<option selected="">UPI / QR Scan</option>
+<option>Credit/Debit Card</option>
+<option>Bank Transfer</option>
+</select>
+</div>
+</div>
+<div class="bg-primary/5 p-4 rounded-xl border-l-4 border-primary">
+<div class="flex justify-between items-center">
+<span class="text-sm font-semibold">Total to be Paid:</span>
+<span class="text-lg font-headline font-extrabold text-primary">₹18,000.00</span>
+</div>
+</div>
+<div class="flex gap-3 pt-4">
+<button class="flex-1 py-3 px-4 bg-surface-container-high text-on-surface-variant font-bold rounded-xl hover:bg-surface-container-highest transition-colors">Cancel</button>
+<button class="flex-1 py-3 px-4 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-xl shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all">Confirm Renewal</button>
+</div>
+</div>
+</div>
+</div>
+</body></html>

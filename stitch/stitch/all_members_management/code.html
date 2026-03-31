@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-primary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "secondary-fixed": "#ffdad4",
+              "background": "#fbf9f8",
+              "on-tertiary": "#ffffff",
+              "tertiary-container": "#2e7d32",
+              "on-secondary": "#ffffff",
+              "secondary-container": "#ff5c47",
+              "primary-fixed": "#ffdad5",
+              "surface-dim": "#dbd9d9",
+              "secondary": "#b52619",
+              "on-background": "#1b1c1c",
+              "on-tertiary-container": "#cbffc2",
+              "tertiary": "#0d631b",
+              "surface-container-high": "#eae8e7",
+              "primary-fixed-dim": "#ffb4aa",
+              "surface-container-low": "#f5f3f3",
+              "on-secondary-fixed-variant": "#920703",
+              "secondary-fixed-dim": "#ffb4a8",
+              "on-surface-variant": "#5d3f3c",
+              "error-container": "#ffdad6",
+              "tertiary-fixed-dim": "#88d982",
+              "on-primary-container": "#ffedeb",
+              "surface-container-highest": "#e4e2e2",
+              "surface": "#fbf9f8",
+              "surface-bright": "#fbf9f8",
+              "on-secondary-container": "#610000",
+              "inverse-on-surface": "#f2f0f0",
+              "primary": "#af000b",
+              "on-tertiary-fixed-variant": "#005312",
+              "on-surface": "#1b1c1c",
+              "outline": "#926f6a",
+              "inverse-surface": "#303030",
+              "on-error-container": "#93000a",
+              "primary-container": "#d81b1b",
+              "outline-variant": "#e7bdb7",
+              "inverse-primary": "#ffb4aa",
+              "error": "#ba1a1a",
+              "on-error": "#ffffff",
+              "surface-container": "#efeded",
+              "surface-tint": "#c0000d",
+              "on-primary-fixed-variant": "#930007",
+              "surface-variant": "#e4e2e2",
+              "on-tertiary-fixed": "#002204",
+              "on-primary-fixed": "#410001",
+              "on-secondary-fixed": "#410000",
+              "tertiary-fixed": "#a3f69c"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      ::-webkit-scrollbar { width: 6px; }
+      ::-webkit-scrollbar-track { background: transparent; }
+      ::-webkit-scrollbar-thumb { background: #e7bdb7; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-primary selection:text-white">
+<!-- SideNavBar Shell -->
+<aside class="bg-red-950 fixed left-0 top-0 h-screen w-[240px] flex flex-col py-6 shadow-2xl z-50">
+<div class="px-6 mb-10 flex items-center gap-3">
+<div class="text-white font-bold bg-red-600 rounded-full w-8 h-8 flex items-center justify-center">G</div>
+<div>
+<h1 class="text-white font-headline font-bold text-base leading-tight">Gravity Fitness</h1>
+<p class="text-red-100/50 text-[10px] uppercase tracking-widest">Admin Console</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="text-red-100/70 hover:text-white px-8 py-3 flex items-center gap-3 hover:bg-red-900/50 transition-colors font-['Plus_Jakarta_Sans'] font-semibold text-sm" href="#">
+<span class="material-symbols-outlined text-red-600">dashboard</span>
+                Overview
+            </a>
+<a class="bg-[#fbf9f8] text-red-950 rounded-l-full ml-4 pl-4 py-3 font-bold flex items-center gap-3 font-['Plus_Jakarta_Sans'] text-sm" href="#">
+<span class="material-symbols-outlined">group</span>
+                Members
+            </a>
+<a class="text-red-100/70 hover:text-white px-8 py-3 flex items-center gap-3 hover:bg-red-900/50 transition-colors font-['Plus_Jakarta_Sans'] font-semibold text-sm" href="#">
+<span class="material-symbols-outlined text-red-600">fact_check</span>
+                Attendance
+            </a>
+<a class="text-red-100/70 hover:text-white px-8 py-3 flex items-center gap-3 hover:bg-red-900/50 transition-colors font-['Plus_Jakarta_Sans'] font-semibold text-sm" href="#">
+<span class="material-symbols-outlined text-red-600">badge</span>
+                Staff
+            </a>
+<a class="text-red-100/70 hover:text-white px-8 py-3 flex items-center gap-3 hover:bg-red-900/50 transition-colors font-['Plus_Jakarta_Sans'] font-semibold text-sm" href="#">
+<span class="material-symbols-outlined text-red-600">payments</span>
+                Finances
+            </a>
+<a class="text-red-100/70 hover:text-white px-8 py-3 flex items-center gap-3 hover:bg-red-900/50 transition-colors font-['Plus_Jakarta_Sans'] font-semibold text-sm" href="#">
+<span class="material-symbols-outlined text-red-600">settings</span>
+                Settings
+            </a>
+</nav>
+<div class="mt-auto border-t border-red-900/50 pt-4">
+<a class="text-red-100/70 hover:text-white px-8 py-3 flex items-center gap-3 hover:bg-red-900/50 transition-colors font-['Plus_Jakarta_Sans'] font-semibold text-sm" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+                Profile
+            </a>
+<a class="text-red-100/70 hover:text-white px-8 py-3 flex items-center gap-3 hover:bg-red-900/50 transition-colors font-['Plus_Jakarta_Sans'] font-semibold text-sm" href="#">
+<span class="material-symbols-outlined">logout</span>
+                Logout
+            </a>
+</div>
+</aside>
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 right-0 w-[calc(100%-240px)] h-16 bg-white/80 backdrop-blur-md flex justify-between items-center px-8 z-40">
+<div class="flex items-center gap-6 flex-1">
+<span class="text-xl font-headline font-extrabold text-slate-900">Dashboard</span>
+<div class="relative w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low rounded-xl border-none focus:ring-2 focus:ring-primary/20 text-sm font-body" placeholder="Search by name, phone, or ID..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:bg-surface-container transition-colors rounded-full opacity-80 hover:opacity-100">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:bg-surface-container transition-colors rounded-full opacity-80 hover:opacity-100">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="h-8 w-px bg-outline-variant/30 mx-2"></div>
+<img alt="Admin User Avatar" class="w-10 h-10 rounded-full object-cover ring-2 ring-surface-container" data-alt="professional portrait of a fitness administrator in a bright modern office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDL6UY8Hj-AE2CxJN2B8bXDPVsR5eGvSpwgKdY_n2W-HiM47OYQTqlSH7BZ-6y42VWRaN5-2mpdBlJLHGHk4BAtAat7Ar5j7UlCIAdLkciNQblEop_qosjstOlHkl7NsATSHDgAlaLOcXHojVaiUMVIaYWBB2d2bOTMmmX9B_HI895HjB-JFy6AkK6-BdZ355LKtscEJT3NMU3feXd9eOxLLvXf9g_SSz-DXtlPmAmzKA2fnIad45aeYTPpR4w9ZLAv50yju8koADA"/>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-[240px] pt-24 pb-12 px-8 min-h-screen">
+<!-- Action Header -->
+<div class="flex justify-between items-end mb-8">
+<div>
+<h2 class="font-headline text-3xl font-bold text-on-background tracking-tight">Members Directory</h2>
+<p class="text-on-surface-variant text-sm mt-1">Manage and monitor 1,284 active community members.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-5 py-2.5 bg-surface-container-lowest text-on-surface font-semibold text-sm rounded-xl hover:bg-surface-container transition-all active:scale-95">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                    Export CSV
+                </button>
+<button class="flex items-center gap-2 px-6 py-2.5 bg-gradient-to-br from-primary to-primary-container text-white font-bold text-sm rounded-xl shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px]">person_add</span>
+                    Add Member
+                </button>
+</div>
+</div>
+<!-- Filter Bar -->
+<div class="bg-surface-container-low rounded-2xl p-4 mb-6 flex flex-wrap gap-4 items-center">
+<div class="flex items-center gap-2 text-on-surface-variant font-label font-medium text-xs uppercase tracking-wider pl-2">
+<span class="material-symbols-outlined text-sm">filter_alt</span>
+                Filters:
+            </div>
+<select class="bg-surface-container-lowest border-none rounded-xl text-sm font-medium px-4 py-2 focus:ring-2 focus:ring-primary/20">
+<option>Plan Type: All</option>
+<option>Elite Membership</option>
+<option>Basic Plan</option>
+<option>Weekend Warrior</option>
+</select>
+<select class="bg-surface-container-lowest border-none rounded-xl text-sm font-medium px-4 py-2 focus:ring-2 focus:ring-primary/20">
+<option>Status: Active</option>
+<option>Expired</option>
+<option>Pending</option>
+</select>
+<select class="bg-surface-container-lowest border-none rounded-xl text-sm font-medium px-4 py-2 focus:ring-2 focus:ring-primary/20">
+<option>Goal: Weight Loss</option>
+<option>Muscle Gain</option>
+<option>Endurance</option>
+</select>
+<div class="ml-auto flex items-center gap-2">
+<span class="text-xs font-label text-on-surface-variant">Sort by:</span>
+<button class="flex items-center gap-1 text-sm font-bold text-primary">
+                    Join Date
+                    <span class="material-symbols-outlined text-sm">keyboard_arrow_down</span>
+</button>
+</div>
+</div>
+<!-- High-Density Table Area -->
+<div class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low/50">
+<th class="py-4 px-6 text-[11px] font-bold text-on-surface-variant uppercase tracking-widest">#</th>
+<th class="py-4 px-6 text-[11px] font-bold text-on-surface-variant uppercase tracking-widest">Member</th>
+<th class="py-4 px-6 text-[11px] font-bold text-on-surface-variant uppercase tracking-widest">Contact &amp; ID</th>
+<th class="py-4 px-6 text-[11px] font-bold text-on-surface-variant uppercase tracking-widest">Plan Details</th>
+<th class="py-4 px-6 text-[11px] font-bold text-on-surface-variant uppercase tracking-widest">Lifecycle</th>
+<th class="py-4 px-6 text-[11px] font-bold text-on-surface-variant uppercase tracking-widest">Status</th>
+<th class="py-4 px-6 text-[11px] font-bold text-on-surface-variant uppercase tracking-widest">Activity</th>
+<th class="py-4 px-6 text-[11px] font-bold text-on-surface-variant uppercase tracking-widest text-center">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-low">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors group cursor-pointer">
+<td class="py-3 px-6 text-xs text-on-surface-variant font-medium">01</td>
+<td class="py-3 px-6">
+<div class="flex items-center gap-3">
+<img alt="Member Avatar" class="w-9 h-9 rounded-full object-cover" data-alt="close-up portrait of a woman smiling with athletic wear in a brightly lit gym environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeWM5Sg-SyTZlSBIjBj3UbnTmzVZO-fhGrDDcU60My45RdNFULaDPmEAFI9uZFnzU7AfESkpWr9-cpHHbtEdh5r5vFN2yngVP701ZmDiavUy4Gh7FxkzZQoaDUW2v_yGUat_KGvVQcSG1RPuOiX75Rin5OTryZD_ulEiVhsMAWZ_B-_G2AiOMFtLw37qOVodsjr-PtCzFblA4yZtp_FA4JLEn5Eq-RSEOAOJndhvg27BsdjU0ApmJeFLb8l6zm9hs7NEojJyRI2fI"/>
+<div>
+<p class="font-headline font-bold text-sm text-on-surface">Elena Rodriguez</p>
+<p class="text-[11px] text-on-surface-variant">Active since 2022</p>
+</div>
+</div>
+</td>
+<td class="py-3 px-6">
+<p class="text-xs font-semibold text-on-surface">+1 (555) 012-3456</p>
+<p class="text-[11px] text-on-surface-variant font-mono">ID: GF-99283</p>
+</td>
+<td class="py-3 px-6">
+<p class="text-xs font-bold text-secondary">Elite Performance</p>
+<p class="text-[11px] text-on-surface-variant">Personal Training Incl.</p>
+</td>
+<td class="py-3 px-6">
+<div class="text-[11px]">
+<p><span class="text-on-surface-variant">Start:</span> <span class="text-on-surface font-medium">Jan 12, 2024</span></p>
+<p><span class="text-on-surface-variant">Ends:</span> <span class="text-on-surface font-medium">Jan 11, 2025</span></p>
+</div>
+</td>
+<td class="py-3 px-6">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-tertiary-fixed text-on-tertiary-fixed">ACTIVE</span>
+</td>
+<td class="py-3 px-6">
+<p class="text-xs font-medium text-on-surface">Today, 06:14 AM</p>
+<div class="flex items-center gap-1 mt-0.5">
+<div class="w-1.5 h-1.5 rounded-full bg-tertiary"></div>
+<span class="text-[10px] text-on-surface-variant">In-Gym</span>
+</div>
+</td>
+<td class="py-3 px-6">
+<div class="flex items-center justify-center gap-2">
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">visibility</span></button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">notifications</span></button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">refresh</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors group cursor-pointer bg-surface-container-low/20">
+<td class="py-3 px-6 text-xs text-on-surface-variant font-medium">02</td>
+<td class="py-3 px-6">
+<div class="flex items-center gap-3">
+<img alt="Member Avatar" class="w-9 h-9 rounded-full object-cover" data-alt="professional portrait of a middle-aged man with a short beard against a neutral studio background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpxZYoWNmVRtH_g4-K3J-q3ev_nZ9BIEm5D73Xvyhxxvfhk6VeWUJw2bIgpzw67RGTUy85L4HA6PZv87wJlNAT5BOsonxVxI1Zmk-PK6iNloarxvsX1-qnnOO6t2p8kaHMifZmASMBoQlOGUrrdW4UBu_RLmONuGXLmIYXqSHGkRdFdWJkYvQrUmePet9z05ECjZ8M-QQWDn8Sbfc7wg_yrMJj8k6acQN1N6ktyT-GFoTq1JpUphf6ghLLzwE1HKiVGw1X5Er3It8"/>
+<div>
+<p class="font-headline font-bold text-sm text-on-surface">Marcus Thorne</p>
+<p class="text-[11px] text-on-surface-variant">Active since 2021</p>
+</div>
+</div>
+</td>
+<td class="py-3 px-6">
+<p class="text-xs font-semibold text-on-surface">+1 (555) 098-7654</p>
+<p class="text-[11px] text-on-surface-variant font-mono">ID: GF-88122</p>
+</td>
+<td class="py-3 px-6">
+<p class="text-xs font-bold text-on-surface">Basic Access</p>
+<p class="text-[11px] text-on-surface-variant">Off-Peak Only</p>
+</td>
+<td class="py-3 px-6">
+<div class="text-[11px]">
+<p><span class="text-on-surface-variant">Start:</span> <span class="text-on-surface font-medium">Mar 05, 2024</span></p>
+<p><span class="text-on-surface-variant">Ends:</span> <span class="text-on-surface font-medium">Apr 05, 2024</span></p>
+</div>
+</td>
+<td class="py-3 px-6">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-secondary-fixed text-on-secondary-fixed-variant">EXPIRING</span>
+</td>
+<td class="py-3 px-6">
+<p class="text-xs font-medium text-on-surface">2 days ago</p>
+<span class="text-[10px] text-on-surface-variant">Last at 6:45 PM</span>
+</td>
+<td class="py-3 px-6 text-center">
+<div class="flex items-center justify-center gap-2">
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">visibility</span></button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">notifications</span></button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">refresh</span></button>
+</div>
+</td>
+</tr>
+<!-- More Rows placeholder to show density -->
+<tr class="hover:bg-surface-container-low transition-colors group cursor-pointer">
+<td class="py-3 px-6 text-xs text-on-surface-variant font-medium">03</td>
+<td class="py-3 px-6">
+<div class="flex items-center gap-3">
+<img alt="Member Avatar" class="w-9 h-9 rounded-full object-cover" data-alt="portrait of a young woman with a focused expression, athletic wear, in a modern minimalist space" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnfg8oHxMjEoj073BlMhDpCyOde59aZDxZDgKFH8fEdc6bTu7-DfmoYdV-bOHwjnh2d7eAFRfST_gTpPn4ZkqszHsWp8sfJU4K_XgjVMCARP0vyFbHJpudT-LNYxGvil8um3AAFyg-iYvFwofl5262ndRu1nJFF25WIBIGhYGCe9INUNCskBPC1VxvJZsfAt2KTdGkH_nYfbj-M6JFF5a1j7KZmqpSS-d9hrTFSJH33uNrahKILzwgBhys-T57yhvBGDVczgn3Org"/>
+<div>
+<p class="font-headline font-bold text-sm text-on-surface">Sarah Jenkins</p>
+<p class="text-[11px] text-on-surface-variant">Active since 2023</p>
+</div>
+</div>
+</td>
+<td class="py-3 px-6">
+<p class="text-xs font-semibold text-on-surface">+1 (555) 234-5678</p>
+<p class="text-[11px] text-on-surface-variant font-mono">ID: GF-10293</p>
+</td>
+<td class="py-3 px-6">
+<p class="text-xs font-bold text-secondary">Pro Athlete</p>
+<p class="text-[11px] text-on-surface-variant">Full Facility + Recovery</p>
+</td>
+<td class="py-3 px-6">
+<div class="text-[11px]">
+<p><span class="text-on-surface-variant">Start:</span> <span class="text-on-surface font-medium">Feb 20, 2024</span></p>
+<p><span class="text-on-surface-variant">Ends:</span> <span class="text-on-surface font-medium">Feb 20, 2025</span></p>
+</div>
+</td>
+<td class="py-3 px-6">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-error-container text-on-error-container">SUSPENDED</span>
+</td>
+<td class="py-3 px-6">
+<p class="text-xs font-medium text-on-surface">3 weeks ago</p>
+<span class="text-[10px] text-on-surface-variant">Account Flagged</span>
+</td>
+<td class="py-3 px-6 text-center">
+<div class="flex items-center justify-center gap-2">
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">visibility</span></button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">notifications</span></button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">refresh</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Pagination -->
+<div class="px-6 py-4 flex items-center justify-between border-t border-surface-container-low">
+<span class="text-xs text-on-surface-variant font-medium">Showing 1 to 10 of 1,284 members</span>
+<div class="flex items-center gap-1">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-sm">first_page</span></button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-sm">chevron_left</span></button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-primary text-white font-bold text-xs">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container transition-colors text-xs font-medium">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container transition-colors text-xs font-medium">3</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-sm">chevron_right</span></button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-sm">last_page</span></button>
+</div>
+</div>
+</div>
+</main>
+<!-- Member Detail Drawer -->
+<aside class="fixed right-0 top-0 h-screen w-[480px] bg-white shadow-[-20px_0px_60px_-15px_rgba(0,0,0,0.1)] z-[60] flex flex-col overflow-hidden">
+<!-- Drawer Header -->
+<div class="p-8 pb-4 relative">
+<button class="absolute top-6 right-6 p-2 text-on-surface-variant hover:bg-surface-container transition-colors rounded-full">
+<span class="material-symbols-outlined">close</span>
+</button>
+<div class="flex flex-col items-center text-center">
+<div class="relative mb-4">
+<img alt="Member Detail Profile" class="w-28 h-28 rounded-full object-cover ring-4 ring-surface-container-low ring-offset-2" data-alt="close-up high quality portrait of a young woman with warm lighting and soft bokeh gym background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0vn0iUr64V-xYrDDtpNOTNWS8TU4m8s55rymhuyOAegxLuoqHMopnvfxiX-_tHI8hBAiQ5A6uYKSwPyfHQPurBH9xLOtA9aC4CPO1YeVPmHdODfMUDGXvT1bi-EWUlbrx_hCkbkKpo_cK0dXTDv6b_nbm-20h8ryD3ZkTSQGk93w2JUQmSfdOrmBrXNrWXn2BxrpAs_Q3EhF7vQTxvw-D9upHNCg_qfEIA2U5uH4nHzpR6ViGJeehtuQv8U52kNRZgl-Q03OzWig"/>
+<div class="absolute bottom-0 right-0 w-8 h-8 bg-tertiary-fixed rounded-full flex items-center justify-center ring-4 ring-white">
+<span class="material-symbols-outlined text-on-tertiary-fixed text-[18px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<h3 class="font-headline text-2xl font-extrabold text-on-background">Elena Rodriguez</h3>
+<p class="text-on-surface-variant text-sm font-medium">ID: GF-99283 • Elite Member</p>
+</div>
+<!-- Quick Stats Row -->
+<div class="grid grid-cols-3 gap-3 mt-8">
+<div class="bg-surface-container-low rounded-2xl p-4 text-center">
+<p class="text-xs font-label text-on-surface-variant uppercase tracking-wider mb-1">Workouts</p>
+<p class="text-xl font-headline font-extrabold text-on-background">142</p>
+</div>
+<div class="bg-surface-container-low rounded-2xl p-4 text-center">
+<p class="text-xs font-label text-on-surface-variant uppercase tracking-wider mb-1">Check-ins</p>
+<p class="text-xl font-headline font-extrabold text-on-background">18</p>
+<p class="text-[10px] text-tertiary font-bold mt-1">↑ 12%</p>
+</div>
+<div class="bg-surface-container-low rounded-2xl p-4 text-center border-2 border-primary/10">
+<p class="text-xs font-label text-on-surface-variant uppercase tracking-wider mb-1">Streak</p>
+<p class="text-xl font-headline font-extrabold text-primary">5 Days</p>
+</div>
+</div>
+</div>
+<!-- Detail Tabs -->
+<div class="px-8 mt-4">
+<div class="flex gap-6 border-b border-surface-container-low">
+<button class="pb-4 text-sm font-bold text-primary border-b-2 border-primary">Overview</button>
+<button class="pb-4 text-sm font-medium text-on-surface-variant hover:text-on-surface transition-colors">Attendance</button>
+<button class="pb-4 text-sm font-medium text-on-surface-variant hover:text-on-surface transition-colors">Workouts</button>
+<button class="pb-4 text-sm font-medium text-on-surface-variant hover:text-on-surface transition-colors">Payments</button>
+</div>
+</div>
+<!-- Drawer Body Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-8 space-y-8">
+<section>
+<h4 class="font-headline font-bold text-sm text-on-background uppercase tracking-widest mb-4">Membership Info</h4>
+<div class="space-y-4">
+<div class="flex justify-between items-center py-2">
+<span class="text-sm text-on-surface-variant">Contract Type</span>
+<span class="text-sm font-bold text-on-surface">Annual Premium</span>
+</div>
+<div class="flex justify-between items-center py-2">
+<span class="text-sm text-on-surface-variant">Personal Trainer</span>
+<div class="flex items-center gap-2">
+<img class="w-6 h-6 rounded-full object-cover" data-alt="professional male fitness trainer with athletic build in gym setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOYWH6iQwzkZNs5cJ9mVRDzpL1-I9NIg-zchrD1N9ma9w60UTeKJpiB2JaM6OLyOr_InSL_D_6zarqyqeFwRL6EyYn1OhY4XyXQYqNJu77p4v-pM2yUCeMktl7swNbfQRuAlwMrUV2bON3MX1mXGJ14WYbxTlWJiQbGadFt4yjud3Q9v7HNgaPqWaIc8tOZId6BJ7szL6ufR15Zk5gUURiJvxc7TvutN33LY8Cvz73n1PDjVLFBLip4ye_e7zDqVlLs2qfXZK_Vck"/>
+<span class="text-sm font-bold text-on-surface">Alex "The Hulk" Riv</span>
+</div>
+</div>
+<div class="flex justify-between items-center py-2">
+<span class="text-sm text-on-surface-variant">Emergency Contact</span>
+<span class="text-sm font-bold text-on-surface">M. Rodriguez (Husband)</span>
+</div>
+</div>
+</section>
+<section>
+<h4 class="font-headline font-bold text-sm text-on-background uppercase tracking-widest mb-4">Recent Progress</h4>
+<div class="bg-surface-container-lowest rounded-2xl p-6 border-2 border-surface-container-low">
+<div class="flex justify-between items-end mb-4">
+<div>
+<p class="text-xs text-on-surface-variant">Weight Change</p>
+<p class="text-2xl font-headline font-extrabold text-on-background">-4.2kg</p>
+</div>
+<div class="w-32 h-10 flex items-end gap-1">
+<div class="flex-1 bg-primary/20 h-[40%]" style="border-radius: 2px;"></div>
+<div class="flex-1 bg-primary/30 h-[55%]" style="border-radius: 2px;"></div>
+<div class="flex-1 bg-primary/50 h-[35%]" style="border-radius: 2px;"></div>
+<div class="flex-1 bg-primary/60 h-[70%]" style="border-radius: 2px;"></div>
+<div class="flex-1 bg-primary/80 h-[85%]" style="border-radius: 2px;"></div>
+<div class="flex-1 bg-primary h-full" style="border-radius: 2px;"></div>
+</div>
+</div>
+<p class="text-xs text-on-surface-variant leading-relaxed">Elena is consistently meeting her protein targets and has increased her squat max by <span class="font-bold text-tertiary">5kg</span> this month.</p>
+</div>
+</section>
+<section>
+<h4 class="font-headline font-bold text-sm text-on-background uppercase tracking-widest mb-4">Upcoming Schedule</h4>
+<div class="space-y-3">
+<div class="flex items-center gap-4 bg-surface-container-low/50 p-4 rounded-xl">
+<div class="w-12 h-12 bg-white rounded-xl flex flex-col items-center justify-center border border-surface-container-low shadow-sm">
+<span class="text-[10px] font-bold text-primary uppercase">Mar</span>
+<span class="text-lg font-headline font-extrabold leading-none">24</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold text-on-surface">HIIT Power Blast</p>
+<p class="text-xs text-on-surface-variant">08:00 AM - Studio B</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+</div>
+</section>
+</div>
+<!-- Drawer Footer -->
+<div class="p-8 bg-surface-container-low/30 border-t border-surface-container-low flex gap-4">
+<button class="flex-1 py-3 bg-white text-on-surface font-bold text-sm rounded-xl border border-surface-container-low hover:bg-surface-container-low transition-colors">Freeze Acc.</button>
+<button class="flex-1 py-3 bg-gradient-to-br from-primary to-primary-container text-white font-bold text-sm rounded-xl shadow-lg shadow-primary/20">Manage Plan</button>
+</div>
+</aside>
+</body></html>
