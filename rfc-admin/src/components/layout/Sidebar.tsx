@@ -150,7 +150,7 @@ export default function Sidebar() {
         {filteredSections.map((section, idx) => (
           <div key={idx} className="space-y-1">
             {!sidebarCollapsed && (
-              <h3 className="px-5 text-[10px] font-bold text-red-100/30 uppercase tracking-[2px] mb-2 animate-in fade-in duration-500">
+              <h3 className="px-5 sidebar-label mb-2 animate-in fade-in duration-500">
                 {section.title}
               </h3>
             )}
@@ -165,14 +165,14 @@ export default function Sidebar() {
                       flex items-center gap-4 py-3 px-5 transition-all duration-200 group
                       ${active 
                         ? 'nav-item active' 
-                        : 'text-red-100/60 hover:text-white hover:bg-white/5'
+                        : 'nav-item'
                       }
                       ${sidebarCollapsed ? 'justify-center rounded-lg mx-2' : ''}
                     `}
                   >
                     <item.icon size={18} className={active ? 'text-primary' : 'group-hover:scale-110 transition-transform'} />
                     {!sidebarCollapsed && (
-                      <span className="text-sm font-semibold font-body whitespace-nowrap animate-in fade-in duration-300">
+                      <span className="text-sm font-semibold whitespace-nowrap animate-in fade-in duration-300">
                         {item.label}
                       </span>
                     )}

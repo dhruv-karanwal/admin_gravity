@@ -39,18 +39,18 @@ export default function DataTable<T extends { uid?: string; id?: string }>({
     <div className={`overflow-x-auto rounded-xl ${className}`}>
       <table className="data-table">
         <thead>
-          <tr className="bg-surface-low">
+          <tr>
             {columns.map((col, idx) => (
               <th 
                 key={idx} 
-                className={`text-[10px] uppercase tracking-wider font-bold text-on-surface-variant text-left ${col.className || ""}`}
+                className={`py-3 px-4 ${col.className || ""}`}
               >
                 {col.header}
               </th>
             ))}
           </tr>
         </thead>
-        <tbody className="divide-y divide-surface-low/30">
+        <tbody>
           {data.map((item, rowIdx) => (
             <tr 
               key={item.uid || item.id || rowIdx} 
@@ -58,7 +58,7 @@ export default function DataTable<T extends { uid?: string; id?: string }>({
               className={`${onRowClick ? "cursor-pointer hover:bg-surface-low transition-colors" : ""}`}
             >
               {columns.map((col, colIdx) => (
-                <td key={colIdx} className={`text-sm text-on-surface ${col.className || ""}`}>
+                <td key={colIdx} className={`py-3 px-4 text-sm ${col.className || ""}`}>
                   {typeof col.accessor === "function" 
                     ? col.accessor(item) 
                     : (item[col.accessor] as React.ReactNode)}

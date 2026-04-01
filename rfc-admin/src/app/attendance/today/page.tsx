@@ -11,6 +11,15 @@ import {
   CheckCircle2,
   AlertCircle
 } from 'lucide-react';
+import { 
+  BarChart, 
+  Bar, 
+  XAxis, 
+  YAxis, 
+  CartesianGrid, 
+  Tooltip, 
+  ResponsiveContainer 
+} from 'recharts';
 import KineticCard from '@/components/shared/KineticCard';
 import DataTable from '@/components/shared/DataTable';
 import StatusChip from '@/components/shared/StatusChip';
@@ -42,17 +51,32 @@ export default function TodayAttendancePage() {
     r.userPhone.includes(searchTerm)
   );
 
+  const hourlyData = Array.from({ length: 24 }, (_, i) => {
+    const hour = i;
+    const count = records.filter(r => new Date(r.checkInAt.toDate()).getHours() === hour).length;
+    return {
+      hour: `${hour.toString().padStart(2, '0')}:00`,
+      count
+    };
+  }).filter(h => h.count > 0 || (parseInt(h.hour) >= 5 && parseInt(h.hour) <= 23));
+
   const columns = [
     {
       header: 'Member Details',
       accessor: (r: AttendanceRecord) => (
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-surface-low flex items-center justify-center font-bold text-primary text-sm">
-            {r.userName[0]}
+          <div style={{
+            width: '36px', height: '36px', borderRadius: '50%',
+            background: 'linear-gradient(135deg, #af000b, #d81b1b)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            color: 'white', fontFamily: 'var(--font-plus-jakarta)',
+            fontWeight: 700, fontSize: '0.875rem'
+          }}>
+            {r.userName[0].toUpperCase()}
           </div>
           <div>
-            <p className="font-bold text-on-surface line-clamp-1">{r.userName}</p>
-            <p className="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest">{r.userPhone}</p>
+            <p className="font-semibold text-sm line-clamp-1">{r.userName}</p>
+            <p className="text-xs text-on-surface-variant/70">{r.userPhone}</p>
           </div>
         </div>
       )
@@ -61,8 +85,8 @@ export default function TodayAttendancePage() {
       header: 'Check-in Time',
       accessor: (r: AttendanceRecord) => (
         <div className="flex items-center gap-2">
-          <Clock size={14} className="text-primary" />
-          <span className="text-xs font-bold text-on-surface uppercase tracking-tight">
+          <Clock size={13} className="text-[#5d3f3c]" />
+          <span className="text-sm font-medium">
             {new Date(r.checkInAt.toDate()).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
           </span>
         </div>
@@ -71,10 +95,15 @@ export default function TodayAttendancePage() {
     {
       header: 'Method',
       accessor: (r: AttendanceRecord) => (
-        <div className="flex items-center gap-2">
-          <div className={`w-1.5 h-1.5 rounded-full ${r.method === 'qr' ? 'bg-secondary' : 'bg-tertiary'}`}></div>
-          <span className="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">{r.method === 'qr' ? 'QR SCAN' : 'MANUAL'}</span>
-        </div>
+        <span style={{
+          background: r.method === 'qr' ? 'rgba(175,0,11,0.08)' : 'rgba(93,63,60,0.08)',
+          color: r.method === 'qr' ? '#af000b' : '#5d3f3c',
+          borderRadius: '9999px', padding: '3px 10px',
+          fontFamily: 'var(--font-inter)', fontWeight: 600, fontSize: '0.7rem',
+          textTransform: 'uppercase', letterSpacing: '0.05em'
+        }}>
+          {r.method === 'qr' ? '⬡ QR' : '✎ MANUAL'}
+        </span>
       )
     },
     {
@@ -86,59 +115,96 @@ export default function TodayAttendancePage() {
   ];
 
   return (
-    <div className="p-8 space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
-      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
+    <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
+      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-8">
         <div>
-          <h1 className="headline-lg tracking-tight mb-1">Today's Attendance</h1>
+          <h1 className="text-2xl font-bold mb-1">Today's Attendance</h1>
           <p className="text-sm text-on-surface-variant font-medium">Real-time check-in log for {new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
         </div>
         
-        <div className="flex items-center gap-3">
-          <div className="relative group">
-            <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant/40 group-focus-within:text-primary transition-colors" />
+        <div className="flex items-center gap-3 w-full lg:w-auto">
+          <div className="relative flex-1 lg:w-64 group">
+            <Search size={15} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: '#5d3f3c' }} />
             <input 
               type="text"
               placeholder="Search check-ins..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full lg:w-64 h-12 bg-surface-low rounded-xl pl-11 pr-4 text-xs font-bold border-none ring-primary/5 focus:ring-4 transition-all placeholder:text-on-surface-variant/30"
+              className="w-full h-11 bg-white border border-[#e7bdb7]/30 rounded-lg pl-10 pr-4 text-sm outline-none focus:ring-2 focus:ring-primary/10 transition-all"
             />
           </div>
 
-          <button className="h-12 px-6 flex items-center gap-3 rounded-xl bg-surface-low hover:bg-surface-lowest text-on-surface-variant transition-colors border border-outline-variant/30">
-            <Download size={16} />
-            <span className="text-[10px] font-bold uppercase tracking-widest">Export CSV</span>
+          <button className="h-11 px-6 flex items-center gap-2 rounded-lg bg-white border border-[#e7bdb7]/30 hover:bg-surface text-on-surface-variant transition-colors whitespace-nowrap">
+            <Download size={15} />
+            <span className="text-[10px] font-bold uppercase tracking-widest">Export</span>
           </button>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-        <KineticCard className="p-6 border-l-4 border-primary">
-          <p className="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest mb-2">Total Check-ins</p>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
+        <div className="bg-white rounded-xl p-5 border-l-4 border-[#af000b]">
+          <p className="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest mb-1">Total Check-ins</p>
           <div className="flex items-baseline gap-2">
-            <h2 className="headline-lg text-primary">{records.length}</h2>
-            <span className="text-xs font-bold text-on-surface-variant">MEMBERS</span>
+            <h2 className="text-4xl font-bold text-[#1b1c1c]">{records.length}</h2>
+            <span className="text-sm text-on-surface-variant">members today</span>
           </div>
-        </KineticCard>
+        </div>
         
-        <KineticCard className="p-6 border-l-4 border-secondary">
-          <p className="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest mb-2">Peak Hour</p>
-          <div className="flex items-baseline gap-2">
-            <h2 className="headline-lg text-secondary">07:00</h2>
-            <span className="text-xs font-bold text-on-surface-variant">AM</span>
+        <div className="bg-white rounded-xl p-5 border-l-4 border-[#d81b1b]">
+          <p className="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest mb-1">Peak Hour</p>
+          <div className="flex items-baseline gap-1">
+            <h2 className="text-4xl font-bold text-[#1b1c1c]">07:00</h2>
+            <span className="text-sm text-on-surface-variant">AM</span>
           </div>
-        </KineticCard>
+        </div>
       </div>
 
-      <KineticCard className="p-1 overflow-hidden">
-        <DataTable 
-          data={filteredRecords}
-          columns={columns}
-          loading={loading}
-          emptyTitle="No check-ins today"
-          emptyMessage="Attendance logs will appear here as members scan in."
-        />
-      </KineticCard>
+      {/* Hourly Distribution */}
+      <div className="bg-white rounded-xl p-6 mb-6">
+        <h3 className="text-base font-bold mb-6">Check-in Distribution</h3>
+        <div className="h-[150px] w-full">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={hourlyData}>
+              <CartesianGrid stroke="transparent" />
+              <XAxis dataKey="hour" tick={{ fontFamily:'var(--font-inter)', fontSize:10, fill:'#5d3f3c' }} axisLine={false} tickLine={false} />
+              <YAxis hide />
+              <Tooltip 
+                 cursor={{ fill: '#f5f3f3' }}
+                 contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.05)', fontSize: '0.75rem' }}
+              />
+              <defs>
+                <linearGradient id="hourGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#af000b" />
+                  <stop offset="100%" stopColor="#d81b1b" stopOpacity={0.6} />
+                </linearGradient>
+              </defs>
+              <Bar dataKey="count" fill="url(#hourGrad)" radius={[3, 3, 0, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      <div className="bg-white rounded-xl overflow-hidden min-h-[400px]">
+        {loading ? (
+          <LoadingShimmer variant="table" />
+        ) : filteredRecords.length === 0 ? (
+          <div className="flex flex-col items-center justify-center py-20">
+            <div className="w-14 h-14 rounded-full bg-[#f5f3f3] flex items-center justify-center mb-4 text-[#5d3f3c]">
+              <Users size={24} />
+            </div>
+            <h3 className="text-lg font-bold">No check-ins yet today</h3>
+            <p className="text-sm text-on-surface-variant opacity-70 mt-1 mb-6">Attendance logs will appear here as members scan in.</p>
+            <button className="btn-primary h-11 px-8">Manual Check-in</button>
+          </div>
+        ) : (
+          <DataTable 
+            data={filteredRecords}
+            columns={columns}
+            loading={loading}
+          />
+        )}
+      </div>
     </div>
+
   );
 }

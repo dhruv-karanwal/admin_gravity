@@ -37,122 +37,150 @@ export default function ClassSchedulePage() {
     loadClasses();
   }, [showToast]);
 
-  const filteredClasses = classes.filter(c => 
-    c.className.toLowerCase().includes(searchTerm.toLowerCase()) || 
-    c.trainer.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] as const;
+  const [selectedDay, setSelectedDay] = useState<typeof days[number]>(days[new Date().getDay() === 0 ? 6 : new Date().getDay() - 1]);
 
-  const columns = [
-    {
-      header: 'Class Name',
-      accessor: (c: ClassSchedule) => (
-        <div>
-          <p className="font-bold text-on-surface">{c.className}</p>
-          <p className="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest">{c.dayOfWeek}</p>
-        </div>
-      )
-    },
-    {
-      header: 'Trainer',
-      accessor: (c: ClassSchedule) => (
-        <div className="flex items-center gap-2">
-          <User size={14} className="text-primary/70" />
-          <span className="text-xs font-bold text-on-surface">{c.trainer}</span>
-        </div>
-      )
-    },
-    {
-      header: 'Time Slot',
-      accessor: (c: ClassSchedule) => (
-        <div className="flex items-center gap-2">
-          <Clock size={14} className="text-on-surface-variant/50" />
-          <span className="text-xs font-bold text-on-surface tracking-tight">
-            {formatTime(c.startTime)} - {formatTime(c.endTime)}
-          </span>
-        </div>
-      )
-    },
-    {
-      header: 'Attendance',
-      accessor: (c: ClassSchedule) => {
-        const percentage = (c.currentBookings / c.capacity) * 100;
-        return (
-          <div className="flex flex-col gap-1 w-32">
-            <div className="flex justify-between items-center text-[10px] font-bold">
-               <span className="text-on-surface-variant uppercase">Booked</span>
-               <span className="text-primary">{c.currentBookings} / {c.capacity}</span>
-            </div>
-            <div className="h-1.5 w-full bg-surface-low rounded-full overflow-hidden">
-               <div 
-                 className={`h-full transition-all duration-500 ${percentage > 80 ? 'bg-error' : 'bg-primary'}`} 
-                 style={{ width: `${percentage}%` }}
-               ></div>
-            </div>
-          </div>
-        );
-      }
-    },
-    {
-      header: '',
-      accessor: (c: ClassSchedule) => (
-        <Link 
-          href={`/classes/bookings?classId=${c.id}`}
-          className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-low text-on-surface-variant hover:text-primary transition-all group"
-        >
-          <ChevronRight size={18} className="group-hover:translate-x-0.5 transition-transform" />
-        </Link>
-      )
-    }
-  ];
+  const filteredClasses = classes.filter(c => {
+    const matchesSearch = c.className.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                          c.trainer.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesDay = c.dayOfWeek === selectedDay;
+    return matchesSearch && matchesDay;
+  });
 
   return (
-    <div className="p-8 space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
-      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
+    <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
+      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-8">
         <div>
-          <div className="flex items-center gap-2 mb-1">
-             <Calendar size={20} className="text-primary" />
-             <h1 className="headline-lg tracking-tight">Class Schedule</h1>
+          <div className="flex items-center gap-3 mb-1">
+             <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                <Calendar size={20} />
+             </div>
+             <h1 className="text-2xl font-bold">Class Schedule</h1>
           </div>
           <p className="text-sm text-on-surface-variant font-medium">Manage group fitness sessions and schedules</p>
         </div>
         
         <div className="flex items-center gap-3 w-full lg:w-auto">
           <div className="relative flex-1 lg:w-64 group">
-            <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant/40 group-focus-within:text-primary transition-colors" />
+            <Search size={15} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: '#5d3f3c' }} />
             <input 
               type="text"
               placeholder="Search classes..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full h-12 bg-surface-low rounded-xl pl-11 pr-4 text-xs font-bold border-none ring-primary/5 focus:ring-4 transition-all placeholder:text-on-surface-variant/30"
+              className="w-full h-11 bg-white border border-[#e7bdb7]/30 rounded-lg pl-10 pr-4 text-sm outline-none focus:ring-2 focus:ring-primary/10 transition-all"
             />
           </div>
 
-          <button className="h-12 px-6 flex items-center gap-3 rounded-xl bg-primary text-white text-[11px] font-bold uppercase tracking-widest hover:bg-primary-high transition-all active:scale-95 shadow-lg shadow-primary/20">
+          <Link href="/classes/add" className="btn-primary h-11 px-6 flex items-center gap-2">
             <Plus size={16} />
             <span>Add Class</span>
-          </button>
+          </Link>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-         {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'].map((day) => (
-           <button key={day} className="p-4 rounded-2xl bg-surface-low hover:bg-surface-lowest border border-white/5 transition-all text-center group">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1 group-hover:text-primary transition-colors">{day}</p>
-              <p className="text-xs font-black text-on-surface">View Schedule</p>
-           </button>
-         ))}
+      <div className="mb-8">
+        <div className="flex gap-2 p-1.5 bg-white rounded-xl border border-[#e7bdb7]/20 w-fit overflow-x-auto scroller-hidden">
+          {days.map((day) => (
+            <button 
+              key={day}
+              onClick={() => setSelectedDay(day)}
+              className={`px-6 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap ${
+                selectedDay === day 
+                  ? 'bg-primary text-white shadow-lg shadow-primary/20 scale-[1.02]' 
+                  : 'text-[#5d3f3c] hover:bg-surface'
+              }`}
+            >
+              {day.substring(0, 3)}
+            </button>
+          ))}
+        </div>
       </div>
 
-      <KineticCard className="p-1 overflow-hidden min-h-[500px]">
-        <DataTable 
-          data={filteredClasses}
-          columns={columns}
-          loading={loading}
-          emptyTitle="No classes scheduled"
-          emptyMessage="Plan your gym classes and they will appear in this interactive timeline."
-        />
-      </KineticCard>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {loading ? (
+          Array.from({ length: 6 }).map((_, i) => (
+            <div key={i} className="h-48 bg-white rounded-xl animate-pulse border border-[#e7bdb7]/10"></div>
+          ))
+        ) : filteredClasses.length === 0 ? (
+          <div className="col-span-full py-20 bg-white rounded-xl flex flex-col items-center justify-center">
+             <div className="w-16 h-16 rounded-full bg-[#f5f3f3] flex items-center justify-center mb-4 text-[#5d3f3c] opacity-50">
+                <Users size={32} />
+             </div>
+             <h3 className="text-lg font-bold">No classes for {selectedDay}</h3>
+             <p className="text-sm text-on-surface-variant mt-1">Try switching days or search for a different session.</p>
+          </div>
+        ) : (
+          filteredClasses.map((c) => {
+            const percentage = (c.currentBookings / c.capacity) * 100;
+            const isFull = c.currentBookings >= c.capacity;
+            
+            return (
+              <div 
+                key={c.id} 
+                className="bg-white rounded-xl p-6 border border-[#e7bdb7]/20 relative overflow-hidden group hover:shadow-xl hover:shadow-[#af000b]/5 transition-all duration-300"
+              >
+                <div style={{
+                  position: 'absolute', left: 0, top: 0, bottom: 0, width: '4px',
+                  background: 'linear-gradient(180deg, #af000b, #d81b1b)'
+                }} />
+                
+                <div className="flex justify-between items-start mb-4">
+                  <div>
+                    <div className="flex items-center gap-2 text-[10px] font-bold text-[#af000b] uppercase tracking-widest mb-1">
+                      <Clock size={12} />
+                      {formatTime(c.startTime)} - {formatTime(c.endTime)}
+                    </div>
+                    <h3 className="text-lg font-black text-[#1b1c1c] tracking-tight">{c.className}</h3>
+                  </div>
+                  <div className={`px-2 py-1 rounded text-[9px] font-black uppercase ${
+                    isFull ? 'bg-error/10 text-error' : 'bg-success/10 text-success'
+                  }`}>
+                    {isFull ? 'FULL' : 'AVAILABLE'}
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3 mb-6">
+                   <div style={{
+                     width: '32px', height: '32px', borderRadius: '50%',
+                     background: 'rgba(93,63,60,0.05)',
+                     display: 'flex', alignItems: 'center', justifyContent: 'center',
+                     color: '#5d3f3c', fontSize: '0.75rem', fontWeight: 800
+                   }}>
+                     {c.trainer[0]}
+                   </div>
+                   <div>
+                     <p className="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest leading-none mb-0.5">Trainer</p>
+                     <p className="text-sm font-semibold text-[#1b1c1c]">{c.trainer}</p>
+                   </div>
+                </div>
+
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-wider text-on-surface-variant">
+                    <span>Capacity / Attendance</span>
+                    <span>{c.currentBookings} / {c.capacity}</span>
+                  </div>
+                  <div className="h-2 w-full bg-[#f5f3f3] rounded-full overflow-hidden">
+                    <div 
+                      className={`h-full transition-all duration-1000 ease-out bg-gradient-to-r from-[#af000b] to-[#d81b1b]`}
+                      style={{ width: `${percentage}%` }}
+                    />
+                  </div>
+                </div>
+
+                <Link 
+                  href={`/classes/bookings?classId=${c.id}`}
+                  className="mt-6 flex items-center justify-center gap-2 w-full py-3 rounded-lg border border-[#e7bdb7]/30 text-[10px] font-black uppercase tracking-widest text-[#5d3f3c] hover:bg-[#af000b] hover:text-white hover:border-[#af000b] transition-all"
+                >
+                  Manage Bookings
+                  <ChevronRight size={14} />
+                </Link>
+              </div>
+            );
+          })
+        )}
+      </div>
     </div>
+
   );
 }
