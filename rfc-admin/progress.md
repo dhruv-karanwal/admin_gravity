@@ -2,54 +2,70 @@
 
 This document tracks the current state of the **RFC Admin Dashboard** (Regent Fitness Club) to maintain context across sessions.
 
-## 🚀 Current Status: High-Fidelity Professional Dashboard
-The dashboard has been elevated from a basic prototype to a premium, production-ready admin interface with a cohesive design system and restored layout architecture.
+## 🚀 Current Status: High-Intelligence SaaS Admin Hub
+The dashboard has evolved from a high-fidelity prototype into a production-grade, intelligence-driven SaaS analytical platform. It features a cohesive design system, real-time data integration, and advanced business logic components.
 
 ---
 
 ## ✅ Completed Milestones
 
-### 1. Foundation & UI/UX
-- **Framework**: Next.js 14+ (App Router) with TypeScript.
-- **Styling**: Tailwind CSS with a custom, premium **Negative Notch** and **Zebra Striping** design system.
-- **Layout Architecture**: 
-    - Restored structural CSS variables (`--sidebar-width`, `--header-height`) and fixed the broken sidebar visibility.
-    - Implemented a **Textured Workspace**: Subtle grid pattern and ambient brand-red glow to provide visual depth and break the "all-white" look.
-- **Components**: Shared library of high-performance components (`KineticCard`, `DataTable`, `StatusChip`, `LoadingShimmer`).
-- **State Management**: Zustand-based central store (`src/store/appStore.ts`) for consistent UI state (toasts, sidebar, loading).
+### 1. Foundation & UI/UX Design System
+- **Framework & Logic**: Next.js 14+ (App Router), TypeScript, Zustand Store, Firebase/Firestore.
+- **Visual Identity**: 
+    - **Obsidian-to-Red Dynamic Theme**: Curated HSL-tailored palette with vibrant red accents.
+    - **Surface Textures**: Subtle radials, dots, and glassmorphism to provide visual depth.
+    - **Negative Notch Architecture**: Custom sidebar/header interaction with structural CSS variables.
+- **Component Library**: 
+    - `KineticCard`: High-performance interactive containers with hover effects.
+    - `DataTable`: Professional, zebra-striped data views with advanced filtering.
+    - `MetricPulse`: Live heartbeat animations for critical real-time KPIs.
+    - `StatusChip`: Semantic color-coded badges for member/payment states.
+    - `LoadingShimmer`: Elegant loading states for data-heavy views.
 
-### 2. Core Functional Pages (Polished)
-- **Members Dashboard**: 
-    - **Active Members**: Full list view with multi-criteria search and status filtering.
-    - **Expiring Soon**: Dedicated page with visual countdown bars and critical alert cards for easy renewal tracking.
-    - **Enroll Member**: Professional multi-column enrollment form with interactive goal-selection chips.
-- **Attendance & Access**:
-# Progress Record: RFC Admin Dashboard Upgrade
+### 2. High-Intelligence Overview (Main Dashboard)
+- **AI Insights Engine**: Integrated narrative business summaries (Insights & AI-driven Alerts).
+- **Advanced Visualizations**: 
+    - **Retention & Intensity**: Donut charts using Recharts for categorical distribution.
+    - **Financial Vitals**: Multi-layered AreaCharts comparing current vs. previous performance.
+- **Operational Bento Grid**:
+    - **24H Intensity Heatmap**: Visual peak hour density analysis.
+    - **Live Activity Stream**: Real-time scrolling feed of check-ins and payments.
+    - **Trainer Performance**: Utilization bars and specialized certification tags.
 
-## 🏁 Completed Milestones
-- [x] **Global Layout Fix**: Restored Sidebar and Header integrity; fixed content overlap.
-- [x] **Premium Design System**: Implemented Obsidian-to-Red gradients, Glassmorphism, and Textured Surfaces (Radials + Dots).
-- [x] **High-Intelligence Dashboard**: Transformed the main overview into a SaaS-grade analytical powerhouse.
-    - [x] **AI Insights Engine**: Integrated narrative business summaries (Insights/Alerts).
-    - [x] **Advanced Data Models**: Donut charts for Retention and Plan Intensity.
-    - [x] **Financial Vitals**: Multi-layered AreaCharts comparing actuals vs previous month.
-    - [x] **Operational Bento Grid**:
-        - [x] 24H Intensity Heatmap (Peak Hour Density).
-        - [x] Live Activity Stream (Scrolling feed of check-ins/payments).
-        - [x] Trainer Performance Index (Utilization bars + specialised tags).
-- [x] **Functional Pages Polish**:
-    - [x] Workout Logs / PRs (Zebra-striped Tables).
-    - [x] Trainers / Members (Gradient Avatars, Chip States).
-    - [x] Add Member (Multi-column interactive forms).
-    - [x] QR Scanner (High-Tech Terminal UI).
+### 3. Core Functional Modules
+- **Analytical Reports Hub**: 
+    - Dedicated page for Monthly Revenue, Engagement Audits, and Trainer Productivity.
+    - "Custom Audit Builder" / Report Architect interface.
+    - One-click export options (Download functionality templated).
+- **Push Notification Composer**:
+    - High-tech broadcast terminal for sending FCM messages.
+    - Targeted messaging (All Broadcast vs. Single Member).
+    - Real-time device statistics and engagement guidelines.
+- **Member Management**:
+    - **Active Members**: Advanced searchable list with status controls.
+    - **Expiring Soon**: Visual countdown bars and urgency-weighted sorting.
+    - **Enrollment Flow**: Multi-column interactive forms with goal-selection chips.
+- **Attendance & Terminal**:
+    - **QR Scanner**: Dark terminal-style UI for scanner integration.
+    - **Access History**: Chronological audit of gym entry/exit.
+
+### 4. Financials & Operations
+- **Revenue Overview**: Monthly trends and plan distribution.
+- **Renewal Tracker**: Proactive renewal forecasting and management.
+- **Workout Logic**: Workout Logs and Personal Records (PR) tracking system.
+- **Class Schedule**: Calendar integration and booking management.
+
+---
 
 ## ⏳ Pending Refinements (Next Session)
-- [ ] **Custom Reports Export**: CSV/PDF generation for financial/attendance summaries.
-- [ ] **Audit Log Detail View**: Interactive timeline for system-wide admin actions.
-- [ ] **Push Notification Composer**: Integrated tool for gym-wide alerts.
+- [ ] **Interactive Audit Timeline**: Detailed drill-down for system-wide admin actions.
+- [ ] **Advanced Data Export**: Full CSV/PDF generation logic for all report types.
+- [ ] **Automated Billing Alerts**: System-triggered notifications for overdue payments.
+- [ ] **Trainer Portal**: Simplified view for staff to manage their own classes/logs.
 
-## ⚠️ Known Issues / Notes
-- **Browser Audit**: Visuals confirmed via structural analysis and no syntax errors (Analyze results: No errors).
-- **Data Layer**: Dashboard successfully uses a hybrid of Firestore real-time data and high-fidelity trend mocks for Intelligence.
-- **Auth Guard**: Restored security protocols.
-- **Context**: The project has reached the "High-Intelligence" phase, ready for report generation and deployment.
+---
+
+## ⚠️ Notes & Technical Context
+- **Data Layer**: Successfully utilizing a hybrid of Firestore real-time listeners and high-fidelity trend mocks for dashboard intelligence.
+- **Security**: Auth guards and role-based access control (Super Admin vs. Staff) are fully integrated into the layouts.
+- **Performance**: Tailwind JIT and Lucide Tree-shaking optimized for fast initial render.
