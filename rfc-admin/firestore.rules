@@ -1,24 +1,93 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Allow anyone to check if they are an admin
-    match /admins/{uid} {
+    // Helper function to check if the user is an admin
+    function isAdmin() {
+      return exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    // Helper function to check if the user is accessing their own data
+    function isOwner(userId) {
+      return request.auth != null && request.auth.uid == userId;
+    }
+
+    // Admins collection: Only Admins can manage this
+    match /admins/{adminId} {
+      allow read, write: if isAdmin();
+    }
+
+    // Gym Settings: Read by all, Managed by Admins
+    match /gym_settings/{settingId} {
       allow read: if request.auth != null;
+      allow write: if isAdmin();
     }
-    
-    // Allow admins to do everything
-    match /{document=**} {
-      allow read, write: if request.auth != null && 
-        exists(/databases/$(database)/documents/admins/$(request.auth.uid)) &&
-        get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.role == 'admin';
+
+    // Members collection
+    match /members/{memberId} {
+      allow read: if isOwner(memberId) || isAdmin();
+      allow write: if isAdmin();
+      allow update: if isOwner(memberId) && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['profile_picture', 'phone_number', 'push_token']);
     }
-    
-    // Explicitly allow users collection access for early testing if needed
-    // (Admins can already see this via the recursive match above)
-    match /users/{userId} {
-      allow read, write: if request.auth != null && 
-        exists(/databases/$(database)/documents/admins/$(request.auth.uid)) &&
-        get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.role == 'admin';
+
+    // Plans: Read by all, Managed by Admins
+    match /plans/{planId} {
+      allow read: if request.auth != null;
+      allow write: if isAdmin();
+    }
+
+    // Payments: Read by owner, Managed by Admins
+    match /payments/{paymentId} {
+      allow read: if isOwner(resource.data.member_id) || isAdmin();
+      allow write: if isAdmin();
+    }
+
+    // Check-ins: Read by owner/admin, Write by Admin or Function
+    match /check_ins/{checkInId} {
+      allow read: if isOwner(resource.data.member_id) || isAdmin();
+      allow write: if isAdmin();
+    }
+
+    // Announcements: Read by all, Managed by Admins
+    match /announcements/{announcementId} {
+      allow read: if request.auth != null;
+      allow write: if isAdmin();
+    }
+
+    // Workouts: Read by all (or specific plan members), Managed by Admins
+    match /workouts/{workoutId} {
+      allow read: if request.auth != null;
+      allow write: if isAdmin();
+    }
+
+    // Body Metrics: Owned by member
+    match /body_metrics/{metricId} {
+      allow read, write: if isOwner(resource.data.member_id) || isAdmin();
+      allow create: if isOwner(request.resource.data.member_id);
+    }
+
+    // Reminders: Owned by member
+    match /reminders/{reminderId} {
+      allow read, write: if isOwner(resource.data.member_id) || isAdmin();
+      allow create: if isOwner(request.resource.data.member_id);
+    }
+
+    // Support Tickets: Owned by member, Managed by Admin
+    match /support_tickets/{ticketId} {
+      allow read: if isOwner(resource.data.member_id) || isAdmin();
+      allow create: if request.auth != null;
+      allow update: if isAdmin();
+    }
+
+    // Inventory: Read by all, Managed by Admin
+    match /inventory/{itemId} {
+      allow read: if request.auth != null;
+      allow write: if isAdmin();
+    }
+
+    // Leads: Managed by Admin
+    match /leads/{leadId} {
+      allow read, write: if isAdmin();
+      allow create: if true; // Public lead capture
     }
   }
 }
