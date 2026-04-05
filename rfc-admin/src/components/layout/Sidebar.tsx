@@ -73,13 +73,6 @@ export default function Sidebar() {
       ]
     },
     {
-      title: "WORKOUTS",
-      items: [
-        { label: "Workout Logs", href: "/workouts", icon: Dumbbell },
-        { label: "Personal Records", href: "/workouts/records", icon: Trophy },
-      ]
-    },
-    {
       title: "CLASSES",
       items: [
         { label: "Class Schedule", href: "/classes", icon: Calendar },
@@ -150,7 +143,7 @@ export default function Sidebar() {
         {filteredSections.map((section, idx) => (
           <div key={idx} className="space-y-1">
             {!sidebarCollapsed && (
-              <h3 className="px-5 sidebar-label mb-2 animate-in fade-in duration-500">
+              <h3 className="nav-section-label animate-in fade-in duration-500">
                 {section.title}
               </h3>
             )}
@@ -185,15 +178,18 @@ export default function Sidebar() {
       </nav>
 
       {/* Bottom Profile Section */}
-      <div className="mt-auto p-4 border-t border-white/10 bg-black/10">
+      <div className="mt-auto p-4 border-t border-white/15 bg-black/5">
         <div className={`flex items-center ${sidebarCollapsed ? 'justify-center' : 'gap-3'} mb-4`}>
-          <div className="w-8 h-8 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white text-xs font-bold font-headline overflow-hidden">
+          <div 
+            className="w-9 h-9 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-lg overflow-hidden"
+            style={{ background: 'linear-gradient(135deg, #af000b, #8b0000)' }}
+          >
             {user?.displayName?.[0] || user?.email?.[0]?.toUpperCase() || 'A'}
           </div>
           {!sidebarCollapsed && (
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-bold text-white truncate">{user?.displayName || 'Admin User'}</p>
-              <p className="text-[10px] text-red-100/40 uppercase font-bold tracking-wider">{role || 'Staff'}</p>
+              <p className="text-xs font-bold text-white truncate leading-tight">{user?.displayName || 'Admin User'}</p>
+              <p className="text-[9px] text-white/40 uppercase font-black tracking-wider mt-0.5">{role || 'Staff'}</p>
             </div>
           )}
         </div>
@@ -201,12 +197,12 @@ export default function Sidebar() {
         <button 
           onClick={logout}
           className={`
-            w-full flex items-center gap-3 py-2 px-3 text-red-100/60 hover:text-white hover:bg-white/5 rounded-lg transition-colors
+            w-full flex items-center gap-3 py-2 px-3 text-white/50 hover:text-white hover:bg-white/8 rounded-lg transition-colors
             ${sidebarCollapsed ? 'justify-center' : ''}
           `}
         >
-          <LogOut size={16} />
-          {!sidebarCollapsed && <span className="text-xs font-bold uppercase tracking-wider">Logout</span>}
+          <LogOut size={14} />
+          {!sidebarCollapsed && <span className="text-[10px] font-black uppercase tracking-widest">Logout</span>}
         </button>
       </div>
 

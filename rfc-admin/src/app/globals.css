@@ -5,29 +5,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&family=Inter:wght@400;500;600&display=swap');
 
 :root {
-  /* Brand */
+  /* Brand Constants */
   --primary:                #af000b;
-  --primary-container:      #d81b1b;
-  --secondary:              #b52619;
-  --deep-gravity:           #8b0000;   /* sidebar background */
-
-  /* Surfaces — The Tonal Stack */
-  --surface:                #f2f1f1;   /* slightly deeper background for contrast */
-  --surface-low:            #f0eff0;   
-  --surface-lowest:         #ffffff;   /* card layer remains pure white */
-
-  /* Text */
-  --on-surface:             #1b1c1c;   /* primary text */
-  --on-surface-variant:     #5d3f3c;   /* headers, labels */
-
-  /* Accents */
-  --tertiary:               #0d631b;   
-  --tertiary-fixed:         #a3f69c;   
-  --on-tertiary-fixed:      #002204;   
-  --error:                  #ba1a1a;   
-
+  --primary-high:           #8b0000;
+  --secondary:              #E65100;   /* Semantic: Amber/Warning */
+  --tertiary:               #2E7D32;   /* Semantic: Green/Success */
+  
+  /* Surface — The Tonal Stack */
+  --surface:                #fbf9f8;   /* Production background */
+  --surface-low:            #f5f3f3;   
+  --surface-lowest:         #ffffff;   /* Pure card layer */
+  
+  /* Typography */
+  --on-surface:             #1b1c1c;   /* Primary body */
+  --on-surface-variant:     #5d3f3c;   /* Muted data labels */
+  --on-surface-subtle:      #9e9e9e;   /* Timestamps, auxiliary */
+  
   /* Dimensions */
-  --sidebar-width:          280px;
+  --sidebar-width:          260px;
   --header-height:          64px;
 }
 
@@ -53,12 +48,11 @@ body {
   left: 0;
   top: 0;
   bottom: 0;
-  background-color: var(--deep-gravity);
+  background-color: var(--primary-high);
   z-index: 50;
   transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow-y: auto;
   overflow-x: hidden;
-  border-right: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .main-area {
@@ -74,92 +68,76 @@ body {
 
 .page-content {
   flex: 1;
-  padding: 2rem;
+  padding: 2.5rem;
   background-color: var(--surface);
 }
 
-/* Typography Hierarchy */
-h1, h2, h3, .metric-number {
+/* Typography Hierarchy — Precision Weights */
+h1, h2, h3, h4, .headline {
   font-family: var(--font-plus-jakarta), sans-serif;
-  color: #1b1c1c;
+  color: var(--on-surface);
+  letter-spacing: -0.02em;
 }
 
-h1 { font-size: 1.75rem; font-weight: 700; }
-h2 { font-size: 1.25rem; font-weight: 700; }
-.metric-number { font-size: 2rem; font-weight: 700; color: #af000b; }
+.data-headline {
+  font-family: var(--font-plus-jakarta), sans-serif;
+  font-weight: 700;
+}
 
-p, span, div, td, th {
+.body-text, p, span, div, td, th {
   font-family: var(--font-inter), sans-serif;
-  font-size: 0.875rem;
-  color: #1b1c1c;
 }
 
-th {
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: #5d3f3c;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.sidebar-label {
-  font-size: 0.65rem;
+/* Sidebar Active State — The Negative Notch Technique */
+.nav-section-label {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 9px;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.35);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
+  padding: 0 20px;
+  margin-bottom: 8px;
 }
 
-/* Sidebar Active State — The Negative Notch */
 .nav-item {
-  color: rgba(255, 255, 255, 0.65);
-  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.60);
+  transition: 150ms ease;
   margin-right: 12px;
-  transition: all 0.2s ease;
+  border-radius: 8px;
 }
 
 .nav-item:hover {
   background: rgba(255, 255, 255, 0.08);
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.90);
 }
 
+/* Active State CUTS into the content area */
 .nav-item.active {
-  background-color: var(--surface) !important;
-  color: #af000b !important;
-  border-radius: 12px 0px 0px 12px !important;
+  background: var(--surface) !important;
+  color: var(--primary) !important;
+  border-radius: 12px 0 0 12px !important;
   margin-right: 0 !important;
   padding-left: 16px !important;
-  font-weight: 600;
+  position: relative;
 }
 
 .nav-item.active svg {
-  color: #af000b !important;
-  stroke: #af000b;
+  color: var(--primary) !important;
 }
 
-/* Tables — Zebra Striping, No Dividers */
-.data-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.data-table thead th {
-  background-color: #f5f3f3;
-  border-bottom: none !important;
-  text-align: left;
-}
-
-.data-table tbody tr:nth-child(even) { background-color: #ffffff; }
-.data-table tbody tr:nth-child(odd)  { background-color: #f5f3f3; }
-.data-table tbody tr { border-bottom: none !important; }
-.data-table td { border: none !important; }
-
-/* Cards — Borderless, No Shadows */
+/* Global Card System — High Density, Tonal Separation */
 .kinetic-card, .card {
   background: #ffffff !important;
   border: none !important;
   border-radius: 12px !important;
   box-shadow: none !important;
+  padding: 20px !important;
+  transition: all 0.3s ease;
+}
+
+.card-accent {
+  border-left: 3px solid var(--primary);
 }
 
 /* Primary Button — Premium Gradient */

@@ -22,8 +22,6 @@ const pageTitleMap: Record<string, string> = {
   '/attendance/today':     "Today's Check-ins",
   '/attendance/history':   'Attendance History',
   '/attendance/scanner':   'QR Scanner',
-  '/workouts':             'Workout Logs',
-  '/workouts/records':     'Personal Records',
   '/classes':              'Class Schedule',
   '/classes/bookings':     'Bookings',
   '/classes/trainers':     'Manage Trainers',
@@ -63,11 +61,11 @@ export default function Header() {
       <div className="flex items-center gap-6">
         <button 
           onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-          className="p-1 rounded-lg hover:bg-surface-low lg:hidden"
+          className="p-1.5 rounded-lg hover:bg-surface-low lg:hidden transition-colors"
         >
-          <Menu size={20} />
+          <Menu size={18} className="text-on-surface-variant" />
         </button>
-        <h2 className="headline-sm animate-in fade-in slide-in-from-left-4 duration-500">
+        <h2 className="text-lg font-semibold text-on-surface tracking-tight animate-in fade-in slide-in-from-left-4 duration-500">
           {getPageTitle()}
         </h2>
       </div>
@@ -76,18 +74,18 @@ export default function Header() {
       <div className="hidden md:block flex-1 max-w-md mx-8 group">
         <div className={`
           relative flex items-center transition-all duration-300
-          ${searchFocused ? 'scale-[1.02]' : ''}
+          ${searchFocused ? 'scale-[1.01]' : ''}
         `}>
           <Search 
-            size={16} 
-            className={`absolute left-3 transition-colors ${searchFocused ? 'text-primary' : 'text-on-surface-variant'}`}
+            size={14} 
+            className={`absolute left-3.5 transition-colors ${searchFocused ? 'text-primary' : 'text-on-surface-variant/40'}`}
           />
           <input 
             type="text"
-            placeholder="Search members, classes or payments..."
+            placeholder="Search console..."
             onFocus={() => setSearchFocused(true)}
             onBlur={() => setSearchFocused(false)}
-            className="w-full bg-surface-low border-none rounded-xl py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-on-surface-variant/50"
+            className="w-full bg-[#f0eeec] border-none rounded-lg py-2 pl-10 pr-4 text-[13px] font-medium focus:ring-2 focus:ring-primary/10 transition-all placeholder:text-on-surface-variant/30"
           />
         </div>
       </div>
@@ -97,45 +95,45 @@ export default function Header() {
         <div className="flex items-center gap-1">
           <button 
             onClick={() => setShowNotifications(!showNotifications)}
-            className="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-surface-low transition-colors text-on-surface-variant relative"
+            className="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-surface-low transition-colors text-on-surface-variant relative"
           >
-            <Bell size={18} />
-            <span className="absolute top-2.5 right-2.5 w-2 h-2 bg-primary rounded-full animate-pulse border-2 border-white"></span>
+            <Bell size={16} />
+            <span className="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full ring-2 ring-surface"></span>
           </button>
           
-          <button className="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-surface-low transition-colors text-on-surface-variant">
-            <HelpCircle size={18} />
+          <button className="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-surface-low transition-colors text-on-surface-variant">
+            <HelpCircle size={16} />
           </button>
         </div>
 
-        <div className="h-6 w-[1px] bg-outline-variant/30 mx-2"></div>
+        <div className="h-4 w-[1px] bg-outline-variant/10 mx-3"></div>
 
         <div className="relative">
           <button 
             onClick={() => setShowProfileMenu(!showProfileMenu)}
-            className="flex items-center gap-3 p-1.5 rounded-xl hover:bg-surface-low transition-colors group"
+            className="flex items-center gap-3 p-1 rounded-lg hover:bg-surface-low transition-colors group"
           >
-            <div className="w-8 h-8 rounded-lg bg-surface-low border border-outline-variant/30 flex items-center justify-center text-primary font-bold overflow-hidden">
+            <div className="w-8 h-8 rounded-lg bg-surface-low border border-outline-variant/10 flex items-center justify-center text-primary font-bold overflow-hidden shadow-sm shadow-primary/5">
               {user?.displayName?.[0] || user?.email?.[0]?.toUpperCase() || 'A'}
             </div>
             <div className="hidden lg:block text-left">
-              <p className="text-xs font-bold leading-none mb-1 group-hover:text-primary transition-colors">
+              <p className="text-[12px] font-bold text-on-surface leading-tight group-hover:text-primary transition-colors">
                 {user?.displayName || 'Administrator'}
               </p>
-              <p className="text-[10px] text-on-surface-variant font-medium leading-none uppercase tracking-wider">
+              <p className="text-[10px] text-on-surface-variant/50 font-semibold leading-none uppercase tracking-wider mt-0.5">
                 {role || 'Staff'}
               </p>
             </div>
           </button>
 
           {showProfileMenu && (
-            <div className="absolute top-full right-0 mt-2 w-48 glass-modal p-2 animate-in zoom-in-95 fade-in duration-200 shadow-2xl">
+            <div className="absolute top-full right-0 mt-2 w-48 bg-white border border-outline-variant/10 p-1.5 rounded-xl animate-in zoom-in-95 fade-in duration-200 shadow-[0_12px_48px_rgba(0,0,0,0.12)] z-50">
               <button 
                 onClick={logout}
-                className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-on-surface hover:bg-surface-low transition-colors"
+                className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] font-medium text-on-surface hover:bg-surface-low transition-colors"
               >
-                <LogOut size={16} className="text-primary" />
-                <span className="font-semibold">Logout</span>
+                <LogOut size={14} className="text-primary" />
+                <span>Logout</span>
               </button>
             </div>
           )}
@@ -144,7 +142,7 @@ export default function Header() {
 
       {/* Profile Menu Backdrop */}
       {showProfileMenu && (
-        <div className="fixed inset-0 z-[-1]" onClick={() => setShowProfileMenu(false)} />
+        <div className="fixed inset-0 z-40 bg-transparent" onClick={() => setShowProfileMenu(false)} />
       )}
     </header>
   );
